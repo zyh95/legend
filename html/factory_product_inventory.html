@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>工厂产品库存</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+	<!--jQuery UI-->
+    <link href="../static/css/lib/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!--自行创建样式-->
+    <link href="../static/css/add_table.css" rel="stylesheet" type="text/css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<!-- 工厂产品库存 -->
+	<div class="factory-product-inventory">
+
+		<!--工厂产品库存表格 -->
+		<div class="factory-product-inventory-table">
+			<div class="row">
+				<div class="col-md-2">
+					<h3>工厂产品库存</h3>
+				</div>
+				<div class="col-md-10">
+					<label for="fpi-product-model">产品型号 </label><input type="text" name="product-model" id="fpi-product-model" value="">
+                    <label for="fpi-product-size">产品规格 </label><input type="text" name="product-size" id="fpi-product-size" value="">
+                    <label for="fpi-product-shape">产品形态 </label>
+                    <select name="product-shape" id="fpi-product-shape">
+                    	<option value="none"></option>}
+                    	<option value="直">直</option>
+                    	<option value="弯">弯</option>
+                    </select>
+                    <button id="fpi-select" type="button" class="btn btn-primary">筛选</button>
+				</div>
+			</div>
+			<div class="table-content">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th name="productModel">产品型号</th>
+							<th name="productSize">产品规格</th>
+							<th name="productShape">产品形态</th>
+							<th name="productInventory">库存总量(kg)</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+						</tr>
+					</tbody>
+				</table>
+				</table>
+			</div>
+		</div>
+		<!-- 工厂产品库存表格结束 -->
+	</div>
+	<!-- 工厂产品库存结束 -->
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../static/js/lib/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../static/js/lib/bootstrap.min.js"></script>
+	<script src="../static/js/lib/jquery-ui.min.js"></script>
+	<script src="../static/js/factory_product_inventory_table.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="../static/js/add_table.js"></script> -->
+</body>
+</html>

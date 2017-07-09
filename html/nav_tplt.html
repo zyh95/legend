@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>NAV</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/lib/jquery-ui.min.js"></script>
+
+    <link href="../static/css/nav.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <!--<script src="../static/js/lib//html5shiv.min.js"></script>-->
+    <!--<script src="../static/js/lib/respond.min.js"></script>-->
+    <!--[endif]-->
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-default fixed" id="header-nav" role="navigation" style="width:100%">
+        <div class="container-fluid" >
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Legend仓库管理系统</a>
+            </div>
+            <div class="fl">
+                <ul class="nav navbar-nav">
+                    <li class="role-navbar-nav active" id="manager-navbar-nav"><a href="#">经理</a></li>
+                    <li class="role-navbar-nav" id="factory-navbar-nav"><a href="#">工厂</a></li>
+                    <li class="role-navbar-nav" id="warehouse-navbar-nav"><a href="#">仓库</a></li>
+                </ul>
+
+            </div>
+            <div class="fr">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a id="notification"href="#"><span class="glyphicon glyphicon-envelope"></span> 通知</a></li>
+                    <li><a id="staff-name" href="#"><span class="glyphicon glyphicon-user"></span> staff-name</a></li>
+                    <li><a id="logout" href="/cg/staff/logout"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<!--<div class="container wrap" >-->
+<div class="wrap" >
+    <!--<div class="row">-->
+        <div class="col-md-1">
+            <nav class="block-display block-shadow" id="feature-nav">
+                <ul class="nav nav-tabs nav-stacked nav-pills nav-click" id="nav-tabs">
+                    <li class="manager-navtabs active"><a name="orderManagement" href="#order-management" role="tab" data-toggle="tab">订单管理</a></li>
+                    <li class="manager-navtabs"><a name="staffManagement" href="#staff-management" role="tab" data-toggle="tab">员工管理</a></li>
+                    <li class="manager-navtabs"><a name="customerInfo" href="#customer-info" role="tab" data-toggle="tab">客户信息</a></li>
+                    <li class="manager-navtabs"><a name="statisticsQuery" href="#statistics-query" role="tab" data-toggle="tab">统计查询</a></li>
+                    <li class="manager-navtabs"><a name="userGuide" href="#user-guide" role="tab" data-toggle="tab">使用指南</a></li>
+                    <li class="factory-navtabs" style="display: none;"><a name="materialPurchase" href="#material-purchase" role="tab" data-toggle="tab">原料采购</a></li>
+                    <li class="factory-navtabs" style="display: none;"><a name="blowOn" href="#blow-on" role="tab" data-toggle="tab">开炉登记</a></li>
+                    <li class="factory-navtabs" style="display: none;"><a name="productModel" href="#product-model" role="tab" data-toggle="tab">产品型号</a></li>
+                    <li class="factory-navtabs" style="display: none;"><a name="productProduce" href="#product-produce" role="tab" data-toggle="tab">产品产出</a></li>
+                    <li class="factory-navtabs" style="display: none;"><a name="outStorageRecord" href="#out-storage-record" role="tab" data-toggle="tab">出库记录</a></li>
+                    <li class="factory-navtabs" style="display: none;"><a name="factoryInventory" href="#factory-inventory" role="tab" data-toggle="tab">工厂库存</a></li>
+                    <li class="factory-navtabs" style="display: none;"><a name="checkWarehouse" href="#check-warehouse" role="tab" data-toggle="tab">清仓登记</a></li>
+                    <li class="factory-navtabs" style="display: none;"><a name="factoryStatistics" href="#factory-statistics" role="tab" data-toggle="tab">工厂统计</a></li>
+                    <li class="warehouse-navtabs" style="display: none;"><a name="inStorageRecord" href="#in-storage-record" role="tab" data-toggle="tab">入库登记</a></li>
+                    <li class="warehouse-navtabs" style="display: none;"><a name="deliveryRecord" href="#delivery-record" role="tab" data-toggle="tab">配送记录</a></li>
+                    <li class="warehouse-navtabs" style="display: none;"><a name="warehouseInventory" href="#warehouse-inventory" role="tab" data-toggle="tab">仓库库存</a></li>
+                    <li class="warehouse-navtabs" style="display: none;"><a name="warehouseStatistics" href="#warehouse-statistics" role="tab" data-toggle="tab">仓库统计</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-md-11">
+            <div class="" id="feature-display">
+                <div class="tab-content">
+                    <div class="tab-pane active" id="order-management">订单管理</div>
+                    <div class="tab-pane" id="staff-management">员工管理</div>
+                    <div class="tab-pane" id="customer-info">客户信息</div>
+                    <div class="tab-pane" id="statistics-query">统计查询</div>
+                    <div class="tab-pane" id="user-guide">
+                        <div class="panel panel-default block-shadow">
+                            <div class="panel-heading">
+                                <div class="panel-title">使用指南</div>
+                            </div>
+                            <div class="panel-body panel-body-border">操作：筛选提交</div>
+                            <div class="panel-body">输出或者输入</div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="material-purchase">原料采购</div>
+                    <div class="tab-pane" id="blow-on">开炉登记</div>
+                    <div class="tab-pane" id="product-model">产品型号</div>
+                    <div class="tab-pane" id="product-produce">产品产出</div>
+                    <div class="tab-pane" id="out-storage-record">出库记录</div>
+                    <div class="tab-pane" id="factory-inventory">工厂库存</div>
+                    <div class="tab-pane" id="check-warehouse">清仓登记</div>
+                    <div class="tab-pane" id="factory-statistics">工厂统计</div>
+                    <div class="tab-pane" id="in-storage-record">入库登记</div>
+                    <div class="tab-pane" id="delivery-record">配送记录</div>
+                    <div class="tab-pane" id="warehouse-inventory">仓库库存</div>
+                    <div class="tab-pane" id="warehouse-statistics">仓库统计</div>
+                </div>
+            </div>
+        </div>
+        <div class="" style="display: none" >
+            <div class="block-display" id="notification-center" >
+                <h3>message通知</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<footer style="position:fixed;bottom:0">-->
+    <!--<div style="width:100%;margin:0 auto;text-align:center" >-->
+        <!--<p>你的公司</p>-->
+    <!--</div>-->
+<!--</footer>-->
+<script src="../static/js/nav.js"></script>
+</body>
+</html>

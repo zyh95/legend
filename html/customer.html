@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>客户信息</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+	<!--jQuery UI-->
+    <link href="../static/css/lib/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!--自行创建样式-->
+    <link href="../static/css/add_table.css" rel="stylesheet" type="text/css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<!-- 客户信息 -->
+	<div class="customer">
+
+		<!-- 客户信息表格 -->
+		<div class="customer-table">
+			<div class="row">
+				<div class="col-md-2">
+					<h3>客户信息</h3>
+				</div>
+				<div class="col-md-10">
+					<label for="customer-name">收货人<input type="text" id="customer-name" value=""></label>
+					<button id="customer-select" type="button" class="btn btn-primary">筛选</button>
+				</div>
+			</div>
+			<div class="table-content">
+				<table class="table table-bordered">
+					<thead>
+                        <tr>
+                        	<th name="customerId" data-key="customerId">id</th>
+                            <th name="customerName" data-key="customerName">收货人</th>
+                            <th name="customerPhone" data-key="customerPhone">联系电话</th>
+                            <th name="customerAddress" data-key="customerAddress">联系地址</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        </tr>
+                    </tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 客户信息表格结束 -->
+	</div>
+	<!-- 客户信息结束 -->
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../static/js/lib/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../static/js/lib/bootstrap.min.js"></script>
+	<script src="../static/js/lib/jquery-ui.min.js"></script>
+	<script src="../static/js/customer.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="../static/js/add_table.js"></script> -->
+</body>
+</html>

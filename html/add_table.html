@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>add_table</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!--jQuery UI-->
+    <link href="../static/css/lib/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!--自行创建样式-->
+    <link href="../static/css/add_table.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+
+    <!-- 原料采购登记
+    -------------------------------------------------------------------------------------------------------------------------->
+    <!--添加面板-->
+    <div id="add-material-purchase-record" class="add-window">
+
+        <div class="add-header">
+            <h3>原料采购</h3>
+            <span class="hiddenMsg"> </span>
+            <button type="button" class="btn btn-info" id="btn-submit-material">提交</button>
+            <button type="button" class="btn btn-danger" id="btn-cancel-material">取消</button>
+        </div>
+
+        <div class="add-table">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>采购日期</th>
+                        <th>原料种类</th>
+                        <th>采购量(kg)</th>
+                        <th>单价(元/kg)</th>
+                        <th>总价(元) </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="material-purchase-purchase-end-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="material-purchase-purchase-end-time" name="purchaseDate"></td>
+                        <td>
+                            <select id="material-purchase-material-class">
+                            <option value="银">银</option>
+                            <option value="铜">铜</option>
+                            <option value="锌">锌</option>
+                            <option value="镉">镉</option>
+                            <option value="锡">锡</option>
+                            <option value="" class="blank-option" selected></option>
+                        </select>
+                        </td>
+                        <td class="hidden"><input type="text" id="material-purchase-material-id" name="material.materialId"></td>
+                        <td><input type="text" id="material-purchase-purchase-quantity" placeholder="保留两位小数" name="purchaseQuantity"></td>
+                        <td><input type="text" id="material-purchase-unit-price" placeholder="保留两位小数" name="unitPrice"></td>
+                        <td><input type="text" id="material-purchase-total-price" name="totalPrice"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 模态框  -->
+    <div id="modal-material-purchase" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+
+                    <label>入库时间：</label><span id="modal-material-purchase-purchase-end-date"></span><br>
+                    <!-- 时间戳 -->
+                    <label class="hidden">时间戳：</label><span class="hidden" id="modal-material-purchase-purchase-end-time"></span>
+                    <label>原料种类：</label><span id="modal-material-purchase-material-class"></span><br>
+                    <label class="hidden">原料ID：</label><span class="hidden" id="modal-material-purchase-material-id"></span>
+                    <label>原料总量：</label><span id="modal-material-purchase-purchase-quantity"></span> kg<br>
+                    <label>单价：</label><span id="modal-material-purchase-unit-price"></span> 元/kg<br>
+                    <label>总价：</label><span id="modal-material-purchase-total-price"></span> 元<br>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="button" id="modal-btn-submit-material">是</button>
+                    <button type="button" data-dismiss="modal">否</button>
+                    <span class="hiddenMsg"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 产品产出登记
+    -------------------------------------------------------------------------------------------------------------------------->
+    <!-- 添加面板 -->
+    <div id="add-product-produce-record" class="add-window">
+
+        <div class="add-header">
+            <h3>产品产出登记</h3>
+            <span class="hiddenMsg"></span>
+            <button type="button" class="btn btn-info" id="btn-submit-product-produce">提交</button>
+            <button type="button" class="btn btn-danger" id="btn-cancel-product-produce">取消</button>
+        </div>
+
+        <div class="add-table">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>加工日期</th>
+                        <th>型号</th>
+                        <th>规格（mm）</th>
+                        <th>形态</th>
+                        <th>产出总量（kg）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="product-produce-produce-end-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="product-produce-produce-end-time" name="produceDate"></td>
+                        <td><select id="product-produce-product-model" name="product.productModelInfo.productModel"></select> </td>
+                        <td><input type="text" id="product-produce-product-size" placeholder="厚*长*宽" name="product.productSize"></td>
+                        <td><select id="product-produce-product-shape" name="product.productShape">
+                    <option value="直" selected>直</option>
+                    <option value="弯">弯</option>
+                    </select>
+                        </td>
+                        <td><input type="text" id="product-produce-produce-quantity" placeholder="保留两位小数" name="produceQuantity"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div id="modal-product-produce" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+
+                    <label>产出日期：</label><span id="modal-product-produce-produce-end-date"></span> <br>
+                    <!-- 时间戳 -->
+                    <label class="hidden">时间戳：</label><span class="hidden" id="modal-product-produce-produce-end-time"></span>
+                    <label>型号：</label><span id="modal-product-produce-product-model"></span><br>
+                    <label>规格(mm)：</label><span id="modal-product-produce-product-size"></span><br>
+                    <label>形态：</label><span id="modal-product-produce-product-shape"></span><br>
+                    <label>产出总量：</label><span id="modal-product-produce-produce-quantity"></span> kg<br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal-btn-submit-product-produce">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 工厂出库登记
+    -------------------------------------------------------------------------------------------------------------------------->
+    <!-- 添加面板 -->
+    <div id="add-out-storage-record" class="add-window">
+
+        <div class="add-header">
+            <h3>出库登记</h3>
+            <span class="hiddenMsg"></span>
+            <button type="button" class="btn btn-info" id="btn-submit-out-storage">提交</button>
+            <button type="button" class="btn btn-danger" id="btn-cancel-out-storage">取消</button>
+        </div>
+
+        <div class="add-table">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>出库日期</th>
+                        <th>型号</th>
+                        <th>规格（mm）</th>
+                        <th>形态</th>
+                        <th>出库总量(kg)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="out-storage-end-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="out-storage-end-time" name="outStorageDate"></td>
+                        <td><select id="out-storage-product-model" name="product.productModelInfo.productModel"></select> </td>
+                        <td><input type="text" id="out-storage-product-size" placeholder="厚*长*宽" name="product.productSize"></td>
+                        <td><select id="out-storage-product-shape" name="product.productShape">
+                            <option value="直" selected>直</option>
+                            <option value="弯">弯</option>
+                            </select>
+                        </td>
+                        <td><input type="text" id="out-storage-quantity" placeholder="保留两位小数" name="outStorageQuantity"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div id="modal-out-storage" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+
+                    <label>出库日期：</label><span id="modal-out-storage-end-date"></span><br>
+                    <!-- 时间戳 -->
+                    <label class="hidden">时间戳：</label><span class="hidden" id="modal-out-storage-end-time"></span>
+                    <label>型号：</label><span id="modal-out-storage-product-model"></span><br>
+                    <label>规格(mm)：</label><span id="modal-out-storage-product-size"></span><br>
+                    <label>形态：</label><span id="modal-out-storage-product-shape"></span><br>
+                    <label>出库总量：</label><span id="modal-out-storage-quantity"></span> kg<br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal-btn-submit-out-storage">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 产品型号添加
+    -------------------------------------------------------------------------------------------------------------------------->
+    <!-- 添加面板 -->
+    <div id="add-product" class="add-window">
+        <div class="add-header">
+            <h3>产品型号添加</h3>
+            <span class="hiddenMsg"></span>
+            <button type="button" class="btn btn-info" id="btn-submit-add-product">提交</button>
+            <button type="button" class="btn btn-danger" id="btn-cancel-add-product">取消</button>
+        </div>
+
+        <div class="add-table">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>添加日期</th>
+                        <th>型号</th>
+                        <th>银占比</th>
+                        <th>铜占比</th>
+                        <th>锌占比</th>
+                        <th>镉占比</th>
+                        <th>锡占比</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="add-product-end-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="add-product-end-time" name="addDate"></td>
+                        <td><input type="text" id="add-product-model" placeholder="字母+数字" name="productModel"></td>
+                        <td><input type="text" id="add-product-ratioAg" placeholder="保留两位小数" name="ratioAg"></td>
+                        <td><input type="text" id="add-product-ratioCu" placeholder="保留两位小数" name="ratioCu"></td>
+                        <td><input type="text" id="add-product-ratioZn" placeholder="保留两位小数" name="ratioZn"></td>
+                        <td><input type="text" id="add-product-ratioCd" placeholder="保留两位小数" name="ratioCd"></td>
+                        <td><input type="text" id="add-product-ratioSn" placeholder="保留两位小数" name="ratioSn"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 模态框 -->
+    <div id="modal-product-model" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+
+                    <label>添加日期：</label><span id="modal-add-product-end-date"></span><br>
+                    <!-- 时间戳 -->
+                    <label class="hidden">时间戳：</label><span class="hidden" id="modal-add-product-end-time"></span>
+                    <label>型号：</label><span id="modal-add-product-model"></span><br>
+                    <label>银占比：</label><span id="modal-add-product-ratioAg"></span><br>
+                    <label>铜占比：</label><span id="modal-add-product-ratioCu"></span><br>
+                    <label>锌占比：</label><span id="modal-add-product-ratioZn"></span><br>
+                    <label>镉占比：</label><span id="modal-add-product-ratioCd"></span><br>
+                    <label>锡占比：</label><span id="modal-add-product-ratioSn"></span><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal-btn-submit-add-product">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 仓库入库登记
+    -------------------------------------------------------------------------------------------------------------------------->
+    <!-- 添加面板 -->
+    <div id="add-in-storage-record" class="add-window">
+
+        <div class="add-header">
+            <h3>入库登记</h3>
+            <span class="hiddenMsg"></span>
+            <button type="button" class="btn btn-info" id="btn-submit-in-storage">提交</button>
+            <button type="button" class="btn btn-danger" id="btn-cancel-in-storage">取消</button>
+        </div>
+
+        <div class="add-table">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>入库日期</th>
+                        <th>型号</th>
+                        <th>规格（mm）</th>
+                        <th>形态</th>
+                        <th>入库总量（kg）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="in-storage-end-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="in-storage-end-time" name="inStorageDate"></td>
+                        <td><select id="in-storage-product-model" name="product.productModelInfo.productModel"></select> </td>
+                        <td><input type="text" id="in-storage-product-size" name="product.productSize" placeholder="厚*长*宽"></td>
+                        <td><select id="in-storage-product-shape" name="product.productShape">
+                        <option value="直" selected>直</option>
+                            <option value="弯">弯</option>
+                        </select>
+                        </td>
+                        <td><input type="text" id="in-storage-quantity" placeholder="保留两位小数" name="inStorageQuantity"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+
+    <!-- 模态框  -->
+    <div id="modal-in-storage" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <label>入库日期：</label><span id="modal-in-storage-end-date"></span><br>
+                    <!-- 时间戳 -->
+                    <label class="hidden">时间戳：</label><span class="hidden" id="modal-in-storage-end-time"></span>
+                    <label>型号：</label><span id="modal-in-storage-product-model"></span><br>
+                    <label>规格(mm)：</label><span id="modal-in-storage-product-size"></span><br>
+                    <label>形态：</label><span id="modal-in-storage-product-shape"></span><br>
+                    <label>入库总量：</label><span id="modal-in-storage-quantity"></span> kg<br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal-btn-submit-in-storage">是</button>
+                    <button type="button" data-dismiss="modal">否</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 订单登记
+    -------------------------------------------------------------------------------------------------------------------------->
+    <!-- 添加面板 -->
+    <div id="add-order-record" class="add-window">
+
+        <div class="add-header">
+            <h3>订单登记</h3>
+            <span class="hiddenMsg"></span>
+            <button type="button" class="btn btn-info" id="btn-submit-add-order">提交</button>
+            <button type="button" class="btn btn-danger" id="btn-cancel-add-order">取消</button>
+        </div>
+
+        <div class="add-table">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>订单日期</th>
+                        <th>型号</th>
+                        <th>规格</th>
+                        <th>型态</th>
+                        <th>总量（kg）</th>
+                        <th>单价</th>
+                        <th>总价</th>
+                        <th>收货人</th>
+                        <th>联系电话</th>
+                        <th>配送地址</th>
+                        <th>仓库管理员</th>
+                        <th>送达日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="add-order-end-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="add-order-end-time" name="orderDate"></td>
+                        <td><select id="add-order-product-model" name="product.productModelInfo.productModel"></select></td>
+                        <td><input type="text" id="add-order-product-size" placeholder="厚*长*宽" name="product.productSize"></td>
+                        <td><select id="add-order-product-shape" name="product.productShape">
+                            <option value="直" selected>直</option>
+                            <option value="弯">弯</option>
+                        </select>
+                        </td>
+                        <td><input type="text" id="add-order-quantity-total" placeholder="保留两位小数" name="deliveryQuantityTotal"></td>
+                        <td><input type="text" id="add-order-unit-price" placeholder="保留两位小数" name="unitPrice"></td>
+                        <td><input type="text" id="add-order-total-price"></td>
+                        <td><input type="text" id="add-order-customer-name" name="customer.customerName"></td>
+                        <td><input type="text" id="add-order-customer-phone" maxlength="12" name="customer.customerPhone"></td>
+                        <td><input type="text" id="add-order-customer-address" name="customer.customerAddress"></td>
+                        <td><select id="add-order-deliverer-name" name="warehouseManagerName">
+                        <!-- 数据需从数据库获取 -->
+                       </select>
+                        </td>
+                        <td class="hidden"><input type="text" id="add-order-deliverer-id" name="warehouseManagerId"></td>
+                        <td><input type="text" id="add-order-arrival-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="add-order-start-time" name="deliveryDate"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 模态框  -->
+    <div id="modal-add-order" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <label>订单日期：</label><span id="modal-add-order-end-date"></span><br>
+                    <!-- 时间戳 -->
+                    <label class="hidden">时间戳：</label><span class="hidden" id="modal-add-order-end-time"></span>
+                    <label>型号：</label><span id="modal-add-order-product-model"></span><br>
+                    <label>规格(mm)：</label><span id="modal-add-order-product-size"></span><br>
+                    <label>形态：</label><span id="modal-add-order-product-shape"></span><br>
+                    <label>总量：</label><span id="modal-add-order-quantity-total"></span> kg<br>
+                    <label>单价：</label><span id="modal-add-order-unit-price"></span> 元/kg<br>
+                    <label>总价：</label><span id="modal-add-order-total-price"></span> 元<br>
+                    <label>收货人：</label><span id="modal-add-order-customer-name"></span><br>
+                    <label>联系电话：</label><span id="modal-add-order-customer-phone"></span><br>
+                    <label>配送地址：</label><span id="modal-add-order-customer-address"></span><br>
+                    <label>仓库管理员：</label><span id="modal-add-order-deliverer-name"></span><br>
+                    <lable class="hidden">仓库管理员ID：</lable><span class="hidden" id="modal-add-order-deliverer-id"></span>
+                    <label>送达日期：</label><span id="modal-add-order-arrival-date"></span><br>
+                    <!-- 时间戳 -->
+                    <label class="hidden">时间戳：</label><span class="hidden" id="modal-add-order-start-time"></span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal-btn-submit-add-order">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 配送登记
+    -------------------------------------------------------------------------------------------------------------------------->
+    <!-- 添加面板 -->
+    <div id="add-delivery-record" class="add-window">
+
+        <div class="add-header">
+            <h3>配送登记</h3>
+            <span class="hiddenMsg"></span>
+            <button type="button" class="btn btn-info" id="btn-submit-add-delivery">提交</button>
+            <button type="button" class="btn btn-danger" id="btn-cancel-add-delivery">取消</button>
+        </div>
+
+        <div class="add-table">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>配送日期</th>
+                        <th>订单编号</th>
+                        <th>型号</th>
+                        <th>规格（mm）</th>
+                        <th>形态</th>
+                        <th>配送量（kg）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="add-delivery-end-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="add-delivery-end-time" name="deliveryDate"></td>
+                        <td><select id="add-delivery-order-num"></select></td>
+                        <!-- 产品信息及收货人信息根据订单编号自动生成 -->
+                        <td><input type="text" id="add-delivery-product-model"></td>
+                        <td><input type="text" id="add-delivery-product-size"></td>
+                        <td><input type="text" id="add-delivery-product-shape"></td>
+                        <td class="hidden"><input type="text" id="add-delivery-customer-name"></td>
+
+                        <td><input type="text" id="add-delivery-quantity" placeholder="保留两位小数" name="deliveryQuantity"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 模态框  -->
+    <div id="modal-add-delivery" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <label>配送日期：</label><span id="modal-add-delivery-end-date"></span><br>
+                    <!-- 时间戳 -->
+                    <label class="hidden">时间戳：</label><span class="hidden" id="modal-add-delivery-end-time"></span>
+                    <label>订单编号：</label><span id="modal-add-delivery-order-num"></span><br>
+                    <label>型号：</label><span id="modal-add-delivery-product-model"></span><br>
+                    <label>规格（mm）：</label><span id="modal-add-delivery-product-size"></span><br>
+                    <label>形态：</label><span id="modal-add-delivery-product-shape"></span><br>
+                    <label>收货人：</label><span id="modal-add-delivery-customer-name"></span><br>
+                    <label>配送量：</label><span id="modal-add-delivery-quantity"></span> kg<br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="modal-btn-submit-add-delivery">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提交成功信息提示框 -->
+    <div id="modal-success" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="modal-title">添加成功！</span>
+                    <button type="button" data-dismiss="modal">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 提交失败信息提示框 -->
+    <div id="modal-fail" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="modal-title">添加失败!</span>
+                    <button type="button" data-dismiss="modal">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/lib/jquery-ui.min.js"></script>
+
+    <!--自行创建的js-->
+    <script src="../static/js/add_table.js"></script>
+
+</body>
+
+</html>

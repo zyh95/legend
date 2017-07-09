@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>产品型号信息记录</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+    <!--jQuery UI-->
+    <link href="../static/css/lib/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!--自行创建样式-->
+    <link href="../static/css/add_table.css" rel="stylesheet" type="text/css">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 产品型号信息记录 -->
+    <div class="product-model-info-record">
+        <!-- 产品型号信息记录表格 -->
+        <div class="product-model-info-record-table">
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>产品型号信息</h3>
+                </div>
+                <div class="col-md-10">
+                    <label for="pmir-start-time">起始时间 </label><input type="date" name="start-time" id="pmir-start-time" value="">
+                    <label for="pmir-end-time">终止时间 </label><input type="date" name="end-time" id="pmir-end-time" value="">
+                    <button id="pmir-select" type="button" class="btn btn-primary">筛选</button>
+                    <button id="pmir-threeDays" type="button" class="btn btn-primary">近三天</button>
+                    <button id="pmir-aWeek" type="button" class="btn btn-primary">近一周</button>
+                    <button id="pmir-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                    <button id="pmir-aMonth" ype="button" class="btn btn-primary">近一个月</button> 
+                </div>
+            </div>
+            <div class="table-content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th name="id" data-key="id">id</th>
+                            <th name="productModel" data-key="productModel">产品型号</th>
+                            <th name="addDate" data-key="addDate">添加日期</th>
+                            <th name="ratioAg" data-key="ratioAg">银</th>
+                            <th name="ratioCu" data-key="ratioCu">铜</th>
+                            <th name="ratioZn" data-key="ratioZn">锌</th>
+                            <th name="ratioCd" data-key="ratioCd">镉</th>
+                            <th name="ratioSn" data-key="ratioSn">锡</th>
+                            <th name="staffName" data-key="staffName">登记人</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- 产品信息记录表格结束 -->
+
+    </div>
+    <!-- 产品信息记录结束 -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/lib/jquery-ui.min.js"></script>
+    <script src="../static/js/product_model_info_record_table.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../static/js/add_table.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>仓库入库记录</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+    <!--jQuery UI-->
+    <link href="../static/css/lib/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!--自行创建样式-->
+    <link href="../static/css/add_table.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- 仓库入库记录 -->
+<div class="warehouse-in-storage-record">
+
+    <!-- 添加面板 -->
+    <div id="add-in-storage-record">
+        <h3>入库登记</h3>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>入库日期</th>
+                <th>型号</th>
+                <th>规格（mm）</th>
+                <th>形态</th>
+                <th>入库总量（kg）</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input type="text" id="in-storage-end-date"></td>
+                <!-- 时间戳 -->
+                <td class="hidden"><input type="text" id="in-storage-end-time" name="inStorageDate"></td>
+                <td><select id="in-storage-product-model" name="productModel"></select></td>
+                <td><input type="text" id="in-storage-product-size" placeholder="厚*长*宽" name="productSize"></td>
+                <td><select id="in-storage-product-shape" name="productShape">
+                    <option value="直" selected>直</option>
+                    <option value="弯">弯</option>
+                </select>
+                </td>
+                <td><input type="text" id="in-storage-quantity" placeholder="保留两位小数" name="inStorageQuantity"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <button type="button" class="btn btn-info" id="btn-submit-in-storage">提交</button>
+        <button type="button" class="btn btn-danger" id="btn-cancel-in-storage">取消</button>
+        <span class="hiddenMsg">  请输入完整信息！</span>
+    </div>
+
+
+    <!-- 仓库入库记录表格 -->
+    <div class="warehouse-in-storage-record-table">
+        <div class="row">
+            <div class="col-md-2">
+                <h3>入库记录</h3>
+            </div>
+            <div class="col-md-10">
+                <label for="wisr-start-time">起始时间 </label><input type="date" name="start-time" id="wisr-start-time"
+                                                                 value="">
+                <label for="wisr-end-time">终止时间 </label><input type="date" name="end-time" id="wisr-end-time" value="">
+                <button id="wisr-select" type="button" class="btn btn-primary">筛选</button>
+                <button id="wisr-threeDays" type="button" class="btn btn-primary">近三天</button>
+                <button id="wisr-aWeek" type="button" class="btn btn-primary">近一周</button>
+                <button id="wisr-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                <button id="wisr-aMonth" ype="button" class="btn btn-primary">近一个月</button>
+            </div>
+        </div>
+        <div class="table-content">
+            <table class="table table-bordered" data-modal-id="modal-in-storage-modify">
+                <thead>
+                <tr>
+                    <th name="id" data-key="id">id</th>
+                    <th name="inStorageNum" data-key="inStorageNum">入库编号</th>
+                    <th name="inStorageDate" data-key="inStorageDate">入库日期</th>
+                    <th name="productModel" data-key="product.productModelInfo.productModel">产品型号</th>
+                    <th name="productSize" data-key="product.productSize">产品规格</th>
+                    <th name="productShape" data-key="product.productShape">产品形态</th>
+                    <th name="inStorageQuantity" data-key="inStorageQuantity">入库重量(kg)</th>
+                    <th name="staffName" data-key="staffName">登记人</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- 仓库入库记录表格结束 -->
+</div>
+<!-- 仓库入库记录结束 -->
+
+<div id="modal-in-storage-modify" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改仓库入库记录</h4>
+            </div>
+            <div class="modal-body" data-url="WarehouseInStorageRecord/">
+                <div>
+                    <label for="in-storage-id-modify">id:</label>
+                    <input class="required data-modify" type="text" id="in-storage-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="in-storage-num-modify">入库编号：</label>
+                    <input class="required data-modify input-num" type="text" id="in-storage-num-modify"
+                           data-key="inStorageNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="in-storage-date-modify">入库日期：</label>
+                    <input class="required data-modify" type="text" id="in-storage-date-modify" data-key="inStorageDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="in-storage-product-model-modify">产品型号：</label>
+                    <select class="required data-modify" id="in-storage-product-model-modify"
+                            data-key="product.productModelInfo.productModel" data-type="string">
+                    </select>
+                </div>
+                <div>
+                    <label for="in-storage-product-size-modify">产品规格：</label>
+                    <input class="required data-modify" type="text" id="in-storage-product-size-modify"
+                           data-key="product.productSize" data-type="string">
+                </div>
+                <div>
+                    <label for="in-storage-product-shape-modify">产品形态：</label>
+                    <select class="required data-modify" id="in-storage-product-shape-modify"
+                            data-key="product.productShape" data-type="string">
+                        <option value="直">直</option>
+                        <option value="弯">弯</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="in-storage-quantity-modify">入库重量(kg)：</label>
+                    <input class="required data-modify" type="number" id="in-storage-quantity-modify"
+                           data-key="inStorageQuantity" data-type="float">
+                </div>
+                <div>
+                    <label for="in-storage-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="in-storage-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-commit-in-storage" class="btn-commit-in-modal">提交</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-success" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <span class="modal-title">记录已成功提交。</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-fail" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <span class="modal-title">提交失败，请检查输入的内容。</span>
+                <button type="button" data-dismiss="modal">返回</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../static/js/lib/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../static/js/lib/bootstrap.min.js"></script>
+<script src="../static/js/lib/jquery-ui.min.js"></script>
+<script src="../static/js/warehouse_in_storage_record_table.js" type="text/javascript" charset="utf-8"></script>
+<script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="../static/js/add_table.js"></script> -->
+</body>
+</html>

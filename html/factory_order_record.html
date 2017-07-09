@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>工厂订单记录</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+    <!--jQuery UI-->
+    <link href="../static/css/lib/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!--自行创建样式-->
+    <link href="../static/css/add_table.css" rel="stylesheet" type="text/css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 工厂订单记录 -->
+    <div class="factory-order-record">
+
+        <!-- 工厂订单记录表格 -->
+        <div class="factory-order-record-table">
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>工厂订单记录</h3>
+                </div>
+                <div class="col-md-10">
+                    <label for="for-start-time">起始时间 </label><input type="date" name="start-time" id="for-start-time" value="">
+                    <label for="for-end-time">终止时间 </label><input type="date" name="end-time" id="for-end-time" value="">
+                    <button id="for-select" type="button" class="btn btn-primary">筛选</button>
+                    <button id="for-threeDays" type="button" class="btn btn-primary">近三天</button>
+                    <button id="for-aWeek" type="button" class="btn btn-primary">近一周</button>
+                    <button id="for-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                    <button id="for-aMonth" ype="button" class="btn btn-primary">近一个月</button> 
+                </div>
+            </div>
+            <div class="table-content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th name="orderNum">订单编号</th>
+                            <th name="orderDate">订单日期</th>
+                            <th name="productModel">产品型号</th>
+                            <th name="productSize">产品规格</th>
+                            <th name="productShape">产品形态</th>
+                            <th name="deliveryQuantityTotal">总量(kg)</th>
+                            <th name="deliveryQuantityNeed">需配送(kg)</th>
+                            <th name="unitPrice">单价(元/kg)</th>
+                            <th name="totalPrice">总价(元)</th>
+                            <th name="customerName">收货人</th>
+                            <th name="customerPhone">联系电话</th>
+                            <th name="customerAddress">配送地址</th>
+                            <th name="orderStatus">订单状态</th>
+                            <th name="deliveryDate">送达日期</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- 工厂订单记录表格结束 -->
+    </div>
+    <!-- 工厂店单记录结束 -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/lib/jquery-ui.min.js"></script>
+    <script src="../static/js/factory_order_record_table.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../static/js/add_table.js"></script> -->
+</body>
+</html>

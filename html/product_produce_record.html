@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>产品产出</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+    <!--jQuery UI-->
+    <link href="../static/css/lib/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!--自行创建样式-->
+    <link href="../static/css/add_table.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 产品产出 -->
+    <div class="product-produce-record">
+        
+        <!-- 添加面板 -->
+        <div id="add-product-produce-record">
+            <h3>产品产出登记</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>加工日期</th>
+                        <th>型号</th>
+                        <th>规格（mm）</th>
+                        <th>形态</th>
+                        <th>产出总量（kg）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="product-produce-produce-end-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="product-produce-produce-end-time"></td>
+                        <td><select id="product-produce-product-model"></select> </td>
+                        <td><input type="text" id="product-produce-product-size" placeholder="厚*长*宽"></td>
+                        <td><select id="product-produce-product-shape">
+                        <option value="直" selected>直</option>
+                        <option value="弯">弯</option>
+                        </select>
+                        </td>
+                        <td><input type="text" id="product-produce-produce-quantity" placeholder="保留两位小数"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button type="button" class="btn btn-info" id="btn-submit-product-produce">提交</button>
+            <button type="button" class="btn btn-danger" id="btn-cancel-product-produce">取消</button>
+            <span class="hiddenMsg">  请输入完整信息！</span>
+        </div>
+
+        <!-- 产品产出记录表格 -->
+        <div class="product-produce-record-table">
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>产品产出查询</h3>
+                </div>
+                <div class="col-md-10">
+                    <label for="ppr-start-time">起始时间 </label><input type="date" name="start-time" id="ppr-start-time" value="">
+                    <label for="ppr-end-time">终止时间 </label><input type="date" name="end-time" id="ppr-end-time" value="">
+                    <button id="ppr-select" type="button" class="btn btn-primary">筛选</button>
+                    <button id="ppr-threeDays" type="button" class="btn btn-primary">近三天</button>
+                    <button id="ppr-aWeek" type="button" class="btn btn-primary">近一周</button>
+                    <button id="ppr-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                    <button id="ppr-aMonth" ype="button" class="btn btn-primary">近一个月</button>  
+                </div>
+            </div>
+            <div class="table-content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th name="id" data-key="id">id</th>
+                            <th name="produceNum" data-key="produceNum">加工编号</th>
+                            <th name="produceDate" data-key="produceDate">加工日期</th>
+                            <th name="productModel" data-key="product.productModelInfo.productModel">产品型号</th>
+                            <th name="productSize" data-key="product.productSize">产品规格</th>
+                            <th name="productShape" data-key="product.productShape">产品形态</th>
+                            <th name="produceQuantity" data-key="produceQuantity">产出总量(kg)</th>
+                            <th name="staffName" data-key="staffName">登记人</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- 产品产出结束 -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/lib/jquery-ui.min.js"></script>
+    <script src="../static/js/product_produce_record_table.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../static/js/add_table.js"></script> -->
+</body>
+</html>

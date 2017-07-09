@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>原料采购</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+    <!--jQuery UI-->
+    <link href="../static/css/lib/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!--自行创建样式-->
+    <link href="../static/css/add_table.css" rel="stylesheet" type="text/css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 原料采购 -->
+    <div class="material-purchase-record">
+        
+        <!--添加面板-->
+        <div id="add-material-purchase-record">
+            <h3>原料采购</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>采购日期</th>
+                        <th>原料种类</th>
+                        <th>采购量(kg)</th>
+                        <th>单价(元/kg)</th>
+                        <th>总价(元) </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" id="material-purchase-purchase-end-date"></td>
+                        <!-- 时间戳 -->
+                        <td class="hidden"><input type="text" id="material-purchase-purchase-end-time" name="purchaseDate"></td>
+                        <td>
+                            <select id="material-purchase-material-class">
+                                <option value="银">银</option>
+                                <option value="铜">铜</option>
+                                <option value="锌">锌</option>
+                                <option value="镉">镉</option>
+                                <option value="锡">锡</option>
+                                <option value="" class="blank-option" selected></option>
+                            </select>
+                        </td>
+                        <td class="hidden"><input type="text" id="material-purchase-material-id" name="purchaseId"></td>
+                        <td><input type="text" id="material-purchase-purchase-quantity" placeholder="保留两位小数" name="purchaseQuantity"></td>
+                        <td><input type="text" id="material-purchase-unit-price" placeholder="保留两位小数" name="unitPrice"></td>
+                        <td><input type="text" id="material-purchase-total-price" name="totalPrice"></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <button type="button" class="btn btn-info" id="btn-submit-material">提交</button>
+            <button type="button" class="btn btn-danger" id="btn-cancel-material">取消</button>
+            <span class="hiddenMsg"> 请输入完整信息！</span>
+        </div>
+
+        <!-- 模态框  -->
+        <div id="modal-material-purchase" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <label>入库时间：</label><span id="modal-material-purchase-purchase-end-date"></span><br>
+                        <!-- 时间戳 -->
+                        <label class="hidden">时间戳：</label><span class="hidden" id="modal-material-purchase-purchase-end-time"></span>
+                        <label>原料种类：</label><span id="modal-material-purchase-material-class"></span><br>
+                        <label class="hidden">原料ID：</label><span class="hidden" id="modal-material-purchase-material-id"></span>
+                        <label>原料总量：</label><span id="modal-material-purchase-purchase-quantity"></span> kg<br>
+                        <label>单价：</label><span id="modal-material-purchase-unit-price"></span> 元/kg<br>
+                        <label>总价：</label><span id="modal-material-purchase-total-price"></span> 元<br>
+                    </div>
+                    <div class="modal-footer">
+
+                        <!-- button的id根据需求自己定义 -->
+                        <button type="button" data-dismiss="modal">是</button>
+                        <button type="button" data-dismiss="modal">否</button>
+                        <span class="hiddenMsg">  请输入完整信息！</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 采购记录表格 -->
+        <div class="material-purchase-record-table">
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>采购记录</h3>
+                </div>
+                <div class="col-md-10">
+                    <label for="mpr-start-time">起始时间 </label><input type="date" name="start-time" id="mpr-start-time" value="">
+                    <label for="mpr-end-time">终止时间 </label><input type="date" name="end-time" id="mpr-end-time" value="">
+                    <button id="mpr-select" type="button" class="btn btn-primary">筛选</button>
+                    <button id="mpr-threeDays" type="button" class="btn btn-primary">近三天</button>
+                    <button id="mpr-aWeek" type="button" class="btn btn-primary">近一周</button>
+                    <button id="mpr-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                    <button id="mpr-aMonth" ype="button" class="btn btn-primary">近一个月</button>  
+                </div>
+            </div>
+            <div class="table-content">
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th name="id" data-key="id">采购id</th>
+                        <th name="purchaseNum" data-key="purchaseNum">采购编号</th>
+                        <th name="purchaseDate" data-key="purchaseDate">采购日期</th>
+                        <th name="materialClass" data-key="material.materialClass">原料种类</th>
+                        <th name="purchaseQuantity" data-key="purchaseQuantity">采购量(kg)</th>
+                        <th name="unitPrice" data-key="unitPrice">单价(元/kg)</th>
+                        <th name="totalPrice" data-key="totalPrice">总价(元)</th>
+                        <th name="staffName" data-key="staffName">登记人</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <!-- 采购记录结束 -->
+    </div>
+    <!-- 原料采购结束 -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/lib/jquery-ui.min.js"></script>
+    <script src="../static/js/material_purchase_record_table.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+    <!-- <script src="../static/js/add_table.js"></script> -->
+</body>
+</html>

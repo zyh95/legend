@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>清仓记录</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 清仓记录 -->
+    <div class="check-warehouse-record">
+        
+        <!-- 模态 -->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <!-- 清仓记录 -->
+                <div class="check-warehouse-record-modal row">
+                    <!-- 其他清仓登记的模态框 -->
+                    <div class="col-md-3">
+                        <!-- id已改 -->
+                        <button class="emit-modal-check-warehouse-others">其他清仓</button>
+                    </div>
+                    <div id="modal-check-warehouse-others" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">其他清仓 (单位：kg)</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                                    <label>清仓日期：</label>
+                                    <input id="others-record-date" name="checkDate" type="text">
+                                    <button class="btn-add-record-row" type="button" id="btn-add-cwo" >增加一项纪录</button>
+                                    <button class="btn-delete-last-row" type="button" id="btn-delete-cwo" >删除最后一项</button><br>
+                                    <!-- 自己定义table的类名和id名 -->
+                                    <table class="table-bordered">
+                                        <tr>
+                                            <th>产品型号</th>
+                                            <th>胚料</th>
+                                            <th>半成品</th>
+                                            <th>废料</th>
+                                            <th>边角料</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="select-in-td" id="cwo-product-model">
+                                                </select></td>
+                                            <td><input class="input-in-td" type="text"></td>
+                                            <td><input class="input-in-td" type="text"></td>
+                                            <td><input class="input-in-td" type="text"></td>
+                                            <td><input class="input-in-td" type="text"></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="emit-modal-confirm" type="button">提交</button>
+                                    <button type="button" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- “其他清仓”的模态框结束 -->
+                    <!-- 胚料登记模态框 -->
+                    <div class="col-md-3">
+                        <!-- 触发模态框的按钮或链接 ，名字自改-->
+                        <button class="emit-modal-check-warehouse-product">产品清仓</button>
+                    </div>
+                    <div id="modal-check-warehouse-product" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">产品清仓 (单位：kg)</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                                    <label>清仓日期：</label>
+                                    <input id="product-record-date" name="checkName" type="text">
+                                    <button class="btn-add-record-row" type="button" id="btn-add-cwp" >增加一项纪录</button>
+                                    <button class="btn-delete-last-row" type="button" id="btn-delete-cwp" >删除最后一项</button><br>
+                                    <!-- 自己定义table的类名和id名 -->
+                                    <table class="table-bordered">
+                                        <tr>
+                                            <th>产品型号</th>
+                                            <th>产品规格</th>
+                                            <th>产品形态</th>
+                                            <th>产品重量</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <select class="select-in-td" id="cwp-product-model">
+                                                </select></td>
+                                            <td><input class="input-in-td" type="text"></td>
+                                            <td data-shape="shape">
+                                                <select class="select-in-td" id="cwp-product-shape">
+                                                    <option value="直">直</option>
+                                                    <option value="弯">弯</option>
+                                                </select>
+                                            </td>
+                                            <td><input class="input-in-td" type="text"></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="emit-modal-confirm" type="button">提交</button>
+                                    <button type="button" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- “产品清仓”的模态框结束 -->
+
+                    <div class="col-md-3">
+                        <button id="cwor-record-button" type="button">其他清仓查询</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="cwpr-record-button" type="button">产品清仓查询</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+        <!-- 其他清仓记录 -->
+        <div class="check-warehouse-others-record-table" style="display: block;">
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>其他清仓记录</h3>
+                </div>
+                <div class="col-md-10">
+                    <label for="cwor-start-time">起始时间 </label><input type="date" name="start-time" id="cwor-start-time" value="">
+                    <label for="cwor-end-time">终止时间 </label><input type="date" name="end-time" id="cwor-end-time" value="">
+                    <button id="cwor-select" type="button" class="btn btn-primary">筛选</button>
+                    <button id="cwor-threeDays" type="button" class="btn btn-primary">近三天</button>
+                    <button id="cwor-aWeek" type="button" class="btn btn-primary">近一周</button>
+                    <button id="cwor-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                    <button id="cwor-aMonth" ype="button" class="btn btn-primary">近一个月</button>  
+                </div>
+            </div>
+            <div class="table-content">
+                <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th name="id" data-key="id">id</th>
+                        <th name="checkNum" data-key="checkNum">清仓编号</th>
+                        <th name="checkDate" data-key="checkDate">清仓日期</th>
+                        <th name="productModel" data-key="product.productModelInfo.productModel">产品型号</th>
+                        <th name="blankInventory" data-key="blankInventory">胚料</th>
+                        <th name="semifinishedProductInventory" data-key="semifinishedProductInventory">半成品</th>
+                        <th name="wasteInventory" data-key="wasteInventory">废料</th>
+                        <th name="leftoverInventory" data-key="leftoverInventory">产品</th>
+                        <th name="staffName" data-key="staffName">登记人</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+
+        <!-- 产品清仓记录 -->
+        <div class="check-warehouse-product-record-table" style="display: none;">
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>产品清仓查询</h3>
+                </div>
+                <div class="col-md-10">
+                    <label for="cwpr-start-time">起始时间 </label><input type="date" name="start-time" id="cwpr-start-time" value="">
+                    <label for="cwpr-end-time">终止时间 </label><input type="date" name="end-time" id="cwpr-end-time" value="">
+                    <button id="cwpr-select" type="button" class="btn btn-primary">筛选</button>
+                    <button id="cwpr-threeDays" type="button" class="btn btn-primary">近三天</button>
+                    <button id="cwpr-aWeek" type="button" class="btn btn-primary">近一周</button>
+                    <button id="cwpr-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                    <button id="cwpr-aMonth" ype="button" class="btn btn-primary">近一个月</button>   
+                </div>
+            </div>
+            <div class="table-content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th name="id" data-key="id">id</th>
+                            <th name="checkNum" data-key="checkNum">产品清仓编号</th>
+                            <th name="checkDate" data-key="checkDate">清仓日期</th>                       
+                            <th name="productModel" data-key="product.productModelInfo.productModel">产品型号</th>
+                            <th name="productSize" data-key="product.productSize">产品规格</th>
+                            <th name="productShape" data-key="product.productShape">产品形态</th>
+                            <th name="productInventory" data-key="productInventory">产品数量(kg)</th>
+                            <th name="staffName" data-key="staffName">登记人</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+                </table>
+            </div>
+        </div>
+    
+    </div>
+    <!-- 清仓记录结束 -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/check_warehouse_record_table.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

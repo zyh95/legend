@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>员工管理div</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <!--因为这里没有使用到Bootstrap的JS插件，所以就没有引用Jquery组件-->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../static/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/lib/jquery-ui.min.css">
+    <link rel="stylesheet" href="../static/css/staff.css">
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/lib/jquery-ui.min.js"></script>
+
+    <script src="../static/js/staff_check.js"></script>
+    <!-- <script src="../static/js/staff_check_for_test.js"></script> -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+   <!-- 员工记录 -->
+    <div>
+        <div id="staff-search">
+            <label for="input-search">选择工号或姓名：</label>
+            <input type="search" id="input-search" placeholder="输入员工工号或员工姓名" data-key="q">
+            <label for="role-select">选择职位：</label>
+            <select name="roleDescription" id="role-select" data-key="role"></select>
+            <label for="staff-state-select">选择状态：</label>
+            <select name="staffState" id="staff-state-select" data-key="state">
+                <option value="" selected></option>
+                <option value="在职">在职</option>
+                <option value="离职">离职</option>
+            </select>
+            <label for="staff-sex-select">选择性别</label>
+            <select name="staffSex" id="staff-sex-select" data-key="sex">
+                <option value="" selected></option>
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+            <label for="staff-marriage-select">选择婚姻状况：</label>
+            <select name="staffMarriage" id="staff-marriage-select" data-key="marriage">
+                <option value="" selected></option>
+                <option value="未婚">未婚</option>
+                <option value="已婚">已婚</option>
+                <option value="离异">离异</option>
+            </select>
+            <label for="staff-entry-date-select">选择入职日期：</label>
+            <input type="text" name="staffEntryDate" id="staff-entry-date-select" data-key="entryDate" data-date="">
+            <button type="button" id="search-staff">查询</button>
+            <button type="button" id="emit-modal-staff-add">添加</button>                       
+        </div>
+
+        <div class="staff-record-table">
+            <div class="table-content">
+                <table class="table table-bordered" data-modal-id="modal-staff-modify">
+                    <thead>
+                        <tr>
+                            <th class="data-hide" name="staffId" data-key="staffId">ID</th>
+                            <th name="staffNum" data-key="staffNum">员工工号</th>
+                            <th name="staffName" data-key="staffName">员工姓名</th>
+                            <th name="staffEntryDate" data-key="staffEntryDate">入职日期</th>
+                            <th name="staffTel" data-key="staffTel">联系手机</th>               
+                            <th name="roleDescription" data-key="role.roleId">职位</th>
+                            <th name="staffState" data-key="staffState">就职状态</th>
+                            <th name="staffSex" data-key="staffSex">性别</th>
+                            <th class="data-hide" name="staffMarriage" data-key="staffMarriage">婚姻状况</th>
+                            <th class="data-hide" name="staffNative" data-key="staffNative">籍贯</th>
+                            <th class="data-hide" name="staffNation" data-key="staffNation">民族</th>
+                            <th class="data-hide" name="staffAddress" data-key="staffAddress">家庭地址</th>
+                            <th class="data-hide" name="staffIdNum" data-key="staffIdNum">身份证号码</th>
+                            <th class="data-hide" name="staffPassword" data-key="staffPassword">登录密码</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-staff-add" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal" >&times;</button>
+                    <h4 class="modal-title">添加员工</h4>
+                </div>
+                <div class="modal-body" data-url="staff">
+                    <div>
+                        <label for="staff-name" data-key="staffName">员工姓名：</label>
+                        <input class="required" type="name" id="staff-name" >
+                    </div>
+                    <div>
+                        <label for="staff-entry-date" data-key="staffEntryDate">入职日期：</label>
+                        <input class="required" type="text" id="staff-entry-date" data-date="">
+                    </div>
+                    <div>
+                        <label for="staff-tel" data-key="staffTel">手机号码：</label>
+                        <input class="required" type="tel" id="staff-tel" >
+                    </div>
+                    <div>
+                        <label for="staff-role" data-key="role.roleId">职位：</label>
+                        <select class="required"  id="staff-role" >
+                        </select>
+                    </div>
+                    <div>
+                        <label for="staff-state" data-key="staffState">就职状态：</label>
+                        <select class="required" id="staff-state" >
+                            <option value="在职" selected>在职</option>
+                            <option value="离职">离职</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="staff-sex" data-key="staffSex">性别：</label>
+                        <select id="staff-sex" >
+                            <option value="男" selected>男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>                  
+                    <div>
+                        <label for="staff-marriage" data-key="staffMarriage">婚姻状况：</label>
+                        <select  id="staff-marriage" >
+                            <option value="未婚" selected>未婚</option>
+                            <option value="已婚">已婚</option>
+                            <option value="离异">离异</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="staff-native" data-key="staffNative">籍贯：</label>
+                        <input type="text" id="staff-native">
+                    </div>
+                    <div>
+                        <label for="staff-nation" data-key="staffNation">民族：</label>
+                        <input type="text" id="staff-nation" >
+                    </div>
+                    <div>
+                        <label for="staff-address" data-key="staffAddress">家庭住址：</label>
+                        <input type="text" id="staff-address">
+                    </div>
+                    <div>
+                        <label for="staff-id-num" data-key="staffIdNum">身份证号：</label>
+                        <input class="required" type="text" id="staff-id-num" >
+                    </div>
+                    <div>
+                        <label for="staff-password" data-key="staffPassword">登录密码：</label>
+                        <input class="required" type="text" id="staff-password" >
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-add-staff">提交</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-staff-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal" >&times;</button>
+                    <h4 class="modal-title">员工信息</h4>
+                </div>
+                <div class="modal-body" data-url="staff/">
+                    <div>
+                        <label data-key="staffId">ID：</label><span class="data-info" id="info-id"></span>
+                    </div>                   
+                    <div>
+                        <label data-key="staffNum">员工工号：</label><span class="data-info" id="info-num"></span>
+                    </div>              
+                    <div>
+                        <label data-key="staffName">员工姓名：</label><span class="data-info" id="info-name"></span>
+                    </div>
+                    <div>
+                        <label data-key="staffEntryDate">入职日期：</label><span class="data-info" id="info-entry-date"></span>
+                    </div>
+                    <div>
+                        <label data-key="staffTel">手机号码：</label><span class="data-info" id="info-tel"></span>
+                    </div>                  
+                    <div>
+                        <label data-key="role.roleId">职位：</label><span class="data-info" id="info-role"></span>
+                    </div>
+                    <div>
+                        <label data-key="staffState">就职状态：</label><span class="data-info" id="info-state"></span>
+                    </div>
+                    <div>
+                        <label data-key="staffSex">性别：</label><span class="data-info" id="info-sex"></span>
+                    </div>                  
+                    <div>
+                        <label data-key="staffMarriage">婚姻状况：</label><span class="data-info" id="info-marriage"></span>
+                    </div>
+                    <div>
+                        <label data-key="staffNative">籍贯：</label><span class="data-info" id="info-native"></span>
+                    </div>
+                    <div>
+                        <label data-key="staffNation">民族：</label><span class="data-info" id="info-nation"></span>
+                    </div>
+                    <div>
+                        <label data-key="staffAddress">家庭住址：</label><span class="data-info" id="info-address"></span>
+                    </div>
+                    <div>
+                        <label data-key="staffIdNum">身份证号：</label><span class="data-info" id="info-id-num"></span>
+                    </div>
+                    <div>
+                        <label data-key="staffPassword">登录密码：</label><span class="data-info" id="info-password"></span>
+                    </div>                  
+                </div>
+                <div class="modal-footer">
+                    <button class="" type="button" id="btn-modify-staff" >修改</button>
+                    <button type="button" data-dismiss="modal">关闭</button>
+                </div>              
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-staff-modify" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal" >&times;</button>
+                    <h4 class="modal-title">修改员工信息</h4>
+                </div>
+                <div class="modal-body" data-url="staff/">
+                    <div>
+                        <label for="staff-id-modify" data-key="staffId">id：</label>
+                        <input class="required data-modify input-num" type="text" id="staff-id-modify" name="staffId" data-key="staffId" data-type="int" readonly>
+                    </div>                
+                    <div>
+                        <label for="staff-num-modify" data-key="staffNum">员工工号：</label>
+                        <input class="required data-modify" type="text" id="staff-num-modify" name="staffNum" data-key="staffNum" data-type="string" readonly>
+                    </div>
+                    <div>
+                        <label for="staff-name-modify" data-key="staffName">员工姓名：</label>
+                        <input class="required data-modify" type="text" id="staff-name-modify" name="staffName" data-key="staffName" data-type="string" readonly>
+                    </div>
+                    <div>
+                        <label for="staff-entry-date-modify" data-key="staffEntryDate">入职日期：</label>
+                        <input class="required data-modify" type="text" id="staff-entry-date-modify" name="staffEntryDate" data-key="staffEntryDate" data-type="time" readonly>
+                    </div>
+                    <div>
+                        <label for="staff-tel-modify" data-key="staffTel">手机号码：</label>
+                        <input class="required data-modify" type="tel" id="staff-tel-modify" name="staffTel" data-key="staffTel" data-type="string">
+                    </div>                  
+                    <div>
+                        <label for="staff-role-modify" data-key="role.roleId">职位：</label>
+                        <input class="required data-modify" id="staff-role-modify" name="roleDescription" data-key="role.roleId" data-type="int" readonly>
+                        
+                    </div>
+                    <div>
+                        <label for="staff-state-modify" data-key="staffState">就职状态：</label>
+                        <select class="required data-modify" id="staff-state-modify" name="staffState" data-key="staffState" data-type="string">
+                            <option value="在职" selected>在职</option>
+                            <option value="离职">离职</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="staff-sex-modify" data-key="staffSex">性别：</label>
+                        <select class="data-modify" id="staff-sex-modify" name="staffSex" data-key="staffSex" data-type="string">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </div>                  
+                    <div>
+                        <label for="staff-marriage-modify" data-key="staffMarriage">婚姻状况：</label>
+                        <select class="data-modify" id="staff-marriage-modify" name="staffMarriage" data-key="staffMarriage" data-type="string">
+                            <option value="未婚">未婚</option>
+                            <option value="已婚">已婚</option>
+                            <option value="离异">离异</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="staff-native-modify" data-key="staffNative">籍贯：</label>
+                        <input class="data-modify" type="text" id="staff-native-modify" name="staffNative" data-key="staffNative" data-type="string">
+                    </div>
+                    <div>
+                        <label for="staff-nation-modify" data-key="staffNation">民族：</label>
+                        <input class="data-modify" type="text" id="staff-nation-modify" name="staffNation" data-key="staffNation" data-type="string">
+                    </div>
+                    <div>
+                        <label for="staff-address-modify" data-key="staffAddress">家庭住址：</label>
+                        <input class="data-modify" type="text" id="staff-address-modify" name="staffAddress" data-key="staffAddress" data-type="string">
+                    </div>
+                    <div>
+                        <label for="staff-id-num-modify" data-key="staffIdNum">身份证号：</label>
+                        <input class="required data-modify" type="text" id="staff-id-num-modify" name="staffIdNum" data-key="staffIdNum" data-type="string" readonly>
+                    </div>
+                    <div>
+                        <label for="staff-pwd-modify" data-key="staffPassword">登录密码：</label>
+                        <input class="required data-modify" type="text" id="staff-pwd-modify" name="staffPassword" data-key="staffPassword" data-type="string">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-commit-in-modal" type="button" id="btn-commit-staff">提交</button>
+                        <button type="button" data-dismiss="modal">取消</button>
+                    </div>                  
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="modal-success" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" >
+                    <span class="modal-title">记录已成功提交。</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button"  data-dismiss="modal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-fail" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" >
+                    <span class="modal-title">提交失败，请检查输入的内容。</span>
+                    <button type="button"  data-dismiss="modal">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

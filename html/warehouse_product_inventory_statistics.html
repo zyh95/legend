@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>仓库库存统计</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+	<!--jQuery UI-->
+    <link href="../static/css/lib/jquery-ui.min.css" rel="stylesheet" type="text/css">
+
+    <!--自行创建样式-->
+    <link href="../static/css/add_table.css" rel="stylesheet" type="text/css">
+    
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<!-- 仓库库存统计 -->
+	<div class="warehouse-product-inventory-statistics">
+
+		<!--仓库库存统计表格 -->
+		<div class="warehouse-product-inventory-statistics-table">
+			<div class="row">
+				<div class="col-md-2">
+					<h3>仓库库存统计</h3>
+				</div>
+				<div class="col-md-10">
+					<label for="wpis-start-time">起始时间 </label><input type="date" name="start-time" id="wpis-start-time" value="">
+                    <label for="wpis-end-time">终止时间 </label><input type="date" name="end-time" id="wpis-end-time" value="">
+                    <button id="wpis-select" type="button" class="btn btn-primary">查看</button>
+                    <button id="wpis-threeDays" type="button" class="btn btn-primary">近三天</button>
+                    <button id="wpis-aWeek" type="button" class="btn btn-primary">近一周</button>
+                    <button id="wpis-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                    <button id="wpis-aMonth" ype="button" class="btn btn-primary">近一个月</button> 
+				</div>
+			</div>
+			<div class="table-content">
+				<table class="table table-bordered">
+					<thead>
+						<tr>
+							<th name="productModel">产品型号</th>
+							<th name="productSize">产品规格</th>
+							<th name="productShape">产品形态</th>
+							<th name="allInStorageQuantity">总入库量</th>
+							<th name="allDeliveryQuantity">总出库量</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- 仓库库存统计表格结束 -->
+	</div>
+	<!-- 仓库库存统计结束 -->
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="../static/js/lib/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="../static/js/lib/bootstrap.min.js"></script>
+	<script src="../static/js/lib/jquery-ui.min.js"></script>
+	<script src="../static/js/warehouse_product_inventory_statistics_table.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+	<!-- <script src="../static/js/add_table.js"></script> -->
+</body>
+</html>

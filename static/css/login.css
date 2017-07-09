@@ -1,0 +1,166 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(../img/ST.png) repeat;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+}
+
+.login-title h1,h2{
+    font-family: STCaiyun;
+    color: #112a18;
+    margin:5px auto;
+    text-shadow:0 5px 30px #afafaf;
+}
+
+
+.block-display {
+    display: block;
+    height: 340px;
+    width: 400px;
+    padding: 30px 50px 50px 50px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position:absolute;
+    margin:auto;
+    background-color: #fff;
+    border: 1px solid #dadada;
+    border-radius: 15px;
+    box-shadow: 0 9px 30px -6px rgba(0,0,0,.2),
+                0 18px 20px -10px rgba(0,0,0,.04),
+                0 18px 20px -10px rgba(0,0,0,.04),
+                0 10px 20px -10px rgba(0,0,0,.04);
+}
+
+.login-title {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom:1px #ddd solid;
+}
+
+.login-form {
+    padding: 30px;
+}
+
+/*输入框的div*/
+.input-form {
+    background: #fff;
+    box-shadow: 0 9px 30px -6px rgba(0,0,0,.2),
+    0 18px 20px -10px rgba(0,0,0,.04),
+    0 18px 20px -10px rgba(0,0,0,.04),
+    0 10px 20px -10px rgba(0,0,0,.04);
+    border: #ccc solid 1px;
+    border-radius: 10px;
+    font-size: 18px;
+    height: 46px;
+    line-height: 46px;
+    opacity: .618;
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.input-form input {
+    border:none;
+    font-size: 18px;
+    outline: none;
+    margin:13px;
+}
+
+.input-form label {
+    color: #112a18;
+    background-color: #eeeeee;
+    font-size:18px;
+    padding: 13px;
+    height: 46px;
+    border-right:1px #ddddff solid;
+    border-radius:10px 0 0 10px;
+}
+
+.notificationMsg {
+    position: absolute;
+    right:10px;
+    font-size:8px;
+}
+
+.focus {
+    border: 1px solid #6b93f2;
+}
+
+.invalid {
+    border: 1px solid #d16d62;
+}
+
+.btn-wrap{
+    margin-top:50px;
+}
+
+.btn-default {
+    height: 46px;
+    width: 180px;
+    line-height: 46px;
+    background-color: #fff;
+    border: #ccc solid 1px;
+    border-radius: 10px;
+    margin: 5px auto;
+}
+
+.btn-default:hover{
+    box-shadow: 0 9px 30px -6px rgba(0,0,0,.2),
+                0 18px 20px -10px rgba(0,0,0,.04),
+                0 18px 20px -10px rgba(0,0,0,.04),
+                0 10px 20px -10px rgba(0,0,0,.04);
+}
+
+.btn-default a {
+    display: block;
+    color: #112a18;
+    font-size:18px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.error-msg {
+    background-color: #d16d62;
+    font-size: 12px;
+    color: #fff;
+    line-height: 20px;
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    height: 20px;
+    padding: 4px;
+    border-radius:4px;
+    z-index: 100;
+}
+
+.hide{
+    display: none;
+}
+
+.login-error-div{
+    width:150px;
+    position: relative;
+    text-align: center;
+    margin: 5px auto;
+}
+
+.login-error-div span {
+    background-color: #d16d62;
+    font-size: 12px;
+    color: #fff;
+    line-height: 20px;
+    position: relative;
+    height: 20px;
+    padding: 4px;
+    border-radius:4px;
+    margin:auto;
+}

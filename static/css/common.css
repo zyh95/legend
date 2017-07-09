@@ -1,0 +1,202 @@
+/*对css进行共用抽取*/
+.feature-display {
+
+}
+
+.feature-display-none {
+
+}
+
+#header-nav{
+    margin: 0;
+    /*box-shadow: 0 9px 30px -6px rgba(0,0,0,.2),*/
+                /*0 18px 20px -10px rgba(0,0,0,.04),*/
+                /*0 18px 20px -10px rgba(0,0,0,.04),*/
+                /*0 10px 20px -10px rgba(0,0,0,.04);*/
+}
+
+/*导航、侧边导航、面板的鼠标hover效果*/
+#header-nav:hover,#feature-nav:hover,.panel:hover{
+    box-shadow: 0 9px 30px -6px rgba(0,0,0,.2),
+                0 18px 20px -10px rgba(0,0,0,.04),
+                0 18px 20px -10px rgba(0,0,0,.04),
+                0 10px 20px -10px rgba(0,0,0,.04);
+}
+
+body {
+    /*background-color: #f5f5f5;*/
+}
+
+.wrap{
+    margin:0;
+    padding: 10px 5px;
+    width: 100%;
+    position:relative;
+    top:52px;
+    min-width: 1200px;
+}
+
+/*侧边导航*/
+#feature-nav {
+    min-width: 90px;
+    max-width: 100px;
+}
+
+#feature-display {
+    /*left:105px;*/
+    min-width: 900px;
+    /*max-width: 1200px;*/
+
+}
+
+.block-display {
+    background-color: #f5f5f5;
+    border: #ddd solid 1px;
+    border-radius: 4px;
+    padding:5px 0;
+    margin:0 auto;
+}
+
+#notification-center {
+    width: 200px;
+}
+
+.fixed {
+    position: fixed;
+    z-index: 100;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+#nav-tabs {
+    border-bottom: none;
+    width: 90px;
+    margin:0 auto;
+}
+
+.row {
+    margin:0;
+}
+
+div[class^="col-md-"] {
+    padding:0;
+}
+
+.block-shadow {
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+}
+
+.panel-body-border {
+    border-bottom:1px #ddd solid;
+}
+
+
+/*土豪*/
+/* 添加记录的模态框上的表格中的输入框的样式 */
+.input-in-td {
+    max-width: 55px;
+    border: 0,0,1px,0;
+}
+
+.data-hide,
+.blank-option{
+    display: none;
+}
+.show-modal-staff-info,
+.show-modal-staff-modify {
+    cursor: pointer;
+}
+
+/*高于钦*/
+/*-- 隐藏下拉框空白选项 --*/
+
+.blank-option {
+    display: none;
+}
+
+
+/*-- 隐藏错误信息 --*/
+
+.hiddenMsg {
+    display: none;
+}
+
+
+/*-- 显示错误信息 --*/
+
+.errorMsg {
+    display: inline;
+    color: red;
+    font-size: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+/*李昕*/
+/* 添加记录的模态框上的表格中的输入框的样式 */
+.input-in-td {
+    max-width: 55px;
+    border: 0,0,1px,0;
+}
+
+[readonly],[disabled] {
+    background-color: #e2ece9;
+}
+
+.add-form input,
+.table-data input,
+.modal-modify input,
+#staff-search input {
+    width: 130px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+.add-form select,
+.table-data select,
+.modal-modify select,
+#staff-search select {
+    width: 90px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+
+input:focus {
+    border-color: #66afe9;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+
+/*服务器返回信息提示显示框*/
+#server-status {
+    position: absolute;
+    top:-40px;
+    left:45%;
+    width:400px;
+    height: 40px;
+    background-color: #5bc0de;
+    z-index: 101;
+    text-align: center;
+    font-size:18px;
+    color :#fff;
+}
+

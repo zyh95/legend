@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <title>模态框的模版--自取</title>
+    <link rel="stylesheet" href="../static/css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/lib/jquery-ui.min.css">
+    <link rel="stylesheet" href="../static/css/common.css">
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/lib/jquery-ui.min.js"></script>
+    <script src="../static/js/emit_modal.js"></script>
+    <script src="../static/js/modal_commit.js"></script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <!-- 开炉登记的模态框 -->
+    <div>
+        <button class="emit emit-modal-blowon">开炉登记</button>
+    </div>
+    <div id="modal-blowon" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false" data-url="BlowonRecord/createBlowonRecord">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">开炉登记 (单位：kg)</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label>开炉日期：</label>
+                        <!-- data-date属性用于标记日期 -->
+                        <input name="blowonDate" type="text" data-date="" data-key="blowonDate">
+                        <button class="btn-add-record-row" type="button">增加一项纪录</button>
+                        <button class="btn-delete-last-row" type="button">删除最后一项</button>
+                        <button class="btn-clear-record" type="button">清空</button>
+                    </div>
+                    <div class="table-content">
+                        <table class="table-bordered">
+                            <tr>
+                                <th data-key="productModelInfo.productModel">产品型号</th>
+                                <th data-key="consumeAg">银</th>
+                                <th data-key="consumeCu">铜</th>
+                                <th data-key="consumeZn">锌</th>
+                                <th data-key="consumeCd">镉</th>
+                                <th data-key="consumeSn">锡</th>
+                                <th data-key="materialConsume">原料总量</th>
+                                <th data-key="wasteConsume">废料</th>
+                                <th data-key="leftoverConsume">边角料</th>
+                            </tr>
+                            <tr>
+                                <td data-model><select data-model="product-model"></select></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                                <td data-auto="blowon"><input class="input-in-td" type="text"></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="emit-modal-confirm" type="button">提交</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 开炉登记的模态框结束 -->
+
+    <!-- 胚料登记模态框 -->
+    <div>
+        <button class="emit emit-modal-blank">胚料登记</button>
+    </div>
+    <div id="modal-blank" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false" data-url="BlowonRecord/createBlankRecord">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">胚料登记 (单位：kg)</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label>开炉日期：</label>
+                        <input id="blowon-date" name="blowonDate" type="text" data-date="" data-key="blowonDate">
+                    </div>
+                    <div class="table-content">
+                        <table class=" table table-bordered">
+                            <tr>
+                                <th data-key="productModelInfo.productModel">产品型号</th>
+                                <th data-key="materialConsume">原料消耗总量</th>
+                                <th data-key="blankProduce">胚料产出总量</th>
+                            </tr>
+                            <tr>
+                                <td data-model><select data-model="product-model" id="model-selected"></select></td>
+                                <td data-read><input class="input-in-td" type="text" id="consume-sum"></td>
+                                <td data-produce><input class="row-append input-in-td" type="text"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="emit-modal-confirm" type="button">提交</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 胚料登记模态框结束 -->
+
+    <!-- “其他清仓”的模态框 -->
+    <div>
+        <button class="emit emit-modal-check-warehouse-others">其他清仓</button>
+    </div>
+    <div id="modal-check-warehouse-others" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false" data-url="CheckWarehouseOthersRecord/createCheckWarehouseOthersRecord">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">其他清仓 (单位：kg)</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label>清仓日期：</label>
+                        <input name="checkDate" type="text" data-date="" data-key="checkDate">
+                        <button class="btn-add-record-row" type="button">增加一项纪录</button>
+                        <button class="btn-delete-last-row" type="button">删除最后一项</button>
+                        <button class="btn-clear-record" type="button">清空</button>
+                    </div>
+                    <div class="table-content">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th data-key="productModelInfo.productModel">产品型号</th>
+                                <th data-key="blankInventory">胚料</th>
+                                <th data-key="semifinishedProductInventory">半成品</th>
+                                <th data-key="wasteInventory">废料</th>
+                                <th data-key="leftoverInventory">边角料</th>
+                            </tr>
+                            <tr>
+                                <td data-model><select data-model="product-model"></select></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                                <td><input class="row-append input-in-td" type="text"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="emit-modal-confirm" type="button">提交</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- “其他清仓”的模态框结束 -->
+
+    <!-- “产品清仓”的模态框 -->
+    <div>
+        <button class="emit emit-modal-check-warehouse-product">产品清仓</button>
+    </div>
+    <div id="modal-check-warehouse-product" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false" data-url="CheckWarehouseOthersRecord/createCheckWarehouseProductRecord">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">产品清仓 (单位：kg)</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <label>清仓日期：</label>
+                        <input name="checkDate" type="text" data-date="" data-key="checkDate">
+                        <button class="btn-add-record-row" type="button">增加一项纪录</button>
+                        <button class="btn-delete-last-row" type="button">删除最后一项</button>
+                        <button class="btn-clear-record" type="button">清空</button>
+                    </div>
+                    <div class="table-content">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th data-key="product.productModelInfo.productModel">产品型号</th>
+                                <th data-key="product.productSize">产品规格</th>
+                                <th data-key="product.productShape">产品形态</th>
+                                <th data-key="productInventory">产品重量</th>
+                            </tr>
+                            <tr>
+                                <td data-model><select data-model="product-model" id="cwp-model"></select></td>
+                                <td data-size><select data-size="product-size"></select></td>
+                                <td data-shape><select data-shape="product-shape"></select></td>
+                                <td><input class="row.append input-in-td" type="text"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="emit-modal-confirm" type="button">提交</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- “产品清仓”的模态框结束 -->
+
+    <!-- 原料采购的模态框 -->
+    <div>
+        <!-- id已改 -->
+        <button class="emit-modal-material-purchase">原料采购</button>
+    </div>
+    <div id="modal-material-purchase" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                    <label>入库时间：</label>2017-06-14<br>
+                    <label>原料种类：</label>银<br>
+                    <label>原料总量：</label>1.000kg<br>
+                    <label>单价：</label>2000元/kg<br>
+                    <label>总价：</label>2000元<br>
+                </div>
+                <div class="modal-footer">
+                    <!-- button的id根据需求自己定义 -->
+                    <button type="button" data-dismiss="modal">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 原料采购的模态框结束 -->
+
+    <!-- 产品产出登记的模态框 -->
+    <div>
+        <!-- 触发模态框的按钮或链接，名字自改 -->
+        <button class="emit-modal-product-produce">产品产出</button>
+    </div>
+    <div id="modal-product-produce" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                    <label>产出日期：</label>2017-06-14<br>
+                    <label>型号：</label>银<br>
+                    <label>规格(mm)：</label>4.5*0.8*1.6<br>
+                    <label>形态：</label>直<br>
+                    <label>产出总量：</label>200kg<br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 产品产出登记的模态框结束 -->
+
+    <!-- 出库登记的模态框 -->
+    <div>
+        <!-- 触发模态框的按钮或链接，名字自改 -->
+        <button class="emit-modal-out-storage">出库登记</button>
+    </div>
+    <div id="modal-out-storage" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                    <label>出库日期：</label>2017-06-14<br>
+                    <label>型号：</label>银<br>
+                    <label>规格(mm)：</label>4.5*0.8*1.6<br>
+                    <label>形态：</label>直<br>
+                    <label>出库总量：</label>200kg<br>
+                    <label>接收仓库：</label>仓库1<br>
+                </div>
+                <div class="modal-footer">
+                    <!-- button的id根据需求自己定义 -->
+                    <button type="button" data-dismiss="modal">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 出库登记的模态框结束 -->
+
+    <!-- 产品型号添加的模态框 -->
+    <div>
+        <!-- 触发模态框的按钮或链接，名字自改 -->
+        <button class="emit-modal-product-model">产品型号</button>
+    </div>
+    <div id="modal-product-model" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                    <label>添加日期：</label>2017-06-14<br>
+                    <label>型号：</label>A<br>
+                    <label>银：</label>0.2<br>
+                    <label>铜：</label>0.3<br>
+                    <label>锌：</label>0.25<br>
+                    <label>镉：</label>0.15<br>
+                    <label>锡</label>0.1<br>
+                </div>
+                <div class="modal-footer">
+                    <!-- button的id根据需求自己定义 -->
+                    <button type="button" data-dismiss="modal">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 产品型号添加的模态框结束 -->
+
+    <!-- 入库登记的模态框 -->
+    <div>
+        <!-- 触发模态框的按钮或链接，名字自改 -->
+        <button class="emit-modal-in-storage">入库登记</button>
+    </div>
+    <div id="modal-in-storage" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                    <label>入库日期：</label>2017-06-14<br>
+                    <label>型号：</label>A<br>
+                    <label>规格(mm)：</label>4.5*0.8*1.6<br>
+                    <label>形态：</label>直<br>
+                    <label>入库总量：</label>200kg<br>
+                </div>
+                <div class="modal-footer">
+                    <!-- button的id根据需求自己定义 -->
+                    <button type="button" data-dismiss="modal">是</button>
+                    <button type="button" data-dismiss="modal">否</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 入库登记的模态框结束 -->
+
+    <!-- 订单登记的模态框 -->
+    <div>
+        <!-- 触发模态框的按钮或链接，名字自改 -->
+        <button class="emit-modal-add-order">订单登记</button>
+    </div>
+    <div id="modal-add-order" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                    <label>订单日期：</label>2017-06-14<br>
+                    <label>型号：</label>A<br>
+                    <label>规格(mm)：</label>4.5*0.8*1.6<br>
+                    <label>形态：</label>直<br>
+                    <label>总量：</label>20 <br>
+                    <label>单价：</label>1000 <br>
+                    <label>总价：</label>20000 <br>
+                    <label>收货人：</label>gyq <br>
+                    <label>联系方式：</label>13225664578 <br>
+                    <label>配送地址：</label>c10 <br>
+                    <label>仓库管理员：</label>lgy <br>
+                    <label>送达日期：</label>2017-06-25<br>
+                </div>
+                <div class="modal-footer">
+                    <!-- button的id根据需求自己定义 -->
+                    <button type="button" data-dismiss="modal">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 订单登记的模态框结束 -->
+
+    <!-- 配送登记的模态框 -->
+    <div>
+        <!-- 触发模态框的按钮或链接，名字自改 -->
+        <button class="emit-modal-warehouse-delivery">配送登记</button>
+    </div>
+    <div id="modal-warehouse-delivery" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">请确认添加的信息是否正确？</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- 这里要根据提取的数据修改label后的样式，需求和原型有点不匹配，可能还要再调整一下 -->
+                    <label>订单编号：</label>data<br>
+                    <label>配送编号：</label>data<br>
+                    <label>配送日期：</label>data<br>
+                    <label>收货人姓名：</label>data<br>
+                    <label>型号：</label>data<br>
+                    <label>规格：</label>data<br>
+                    <label>形态：</label>data<br>
+                    <label>重量：</label>data<br>
+                    <label>配送量：</label>data<br>
+                </div>
+                <div class="modal-footer">
+                    <!-- button的id根据需求自己定义 -->
+                    <button type="button" data-dismiss="modal">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 配送登记的模态框结束 -->
+
+    <!-- 各种提交确认框的模版,一定要放在触发按钮所处的div之后 -->
+    <div id="modal-confirm" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="modal-title">请确认添加的信息是否正确？</span>
+                    <!-- 以下两个按钮都需要定义事件 -->
+                    <button type="button" id="btn-confirm" data-dismiss="modal">确认</button>
+                    <button type="button" data-dismiss="modal">取消</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 提交确认框结束 -->
+
+    <!-- 提交成功信息提示框 -->
+    <div id="modal-success" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <span class="modal-title">记录已成功提交。</span>
+                    <!-- 以下两个按钮都需要定义事件 -->
+                    <button type="button" data-dismiss="modal">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 提交成功信息提示框结束 -->
+
+    <!-- 提交失败信息提示框 -->
+    <div id="modal-fail" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body" >
+                    <span class="modal-title">提交失败，请检查输入的内容是否为空或错误。</span>
+                    <button type="button"  data-dismiss="modal">返回</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 提交失败信息提示框结束 -->
+</body>
+</html>

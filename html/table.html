@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<!-- 原料采购记录 -->
+	<div class="material-purchase-record">
+		<div>
+			<h3>采购记录</h3>
+			<label for="mpr_start_time">起始时间<input type="date" id="mpr_start_time" value=""></label>
+			<label for="mpr_end_time">终止时间<input type="date" id="mpr_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>采购编号</th>
+						<th>采购日期</th>
+						<th>原料种类</th>
+						<th>采购量(kg)</th>
+						<th>单价(元/kg)</th>
+						<th>总价(元)</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+	
+	<!-- 开炉记录 -->
+	<div class="blowon-record">
+		<div>
+			<h3>开炉记录</h3>
+			<label for="br_start_time">起始时间<input type="date" id="br_start_time" value=""></label>
+			<label for="br_end_time">终止时间<input type="date" id="br_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>开炉编号</th>
+						<th>开炉日期</th>
+						<th>产品型号</th>
+						<th>银</th>
+						<th>铜</th>
+						<th>锌</th>
+						<th>镉</th>
+						<th>锡</th>
+						<th>废料</th>
+						<th>原料消耗总量</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 损耗比记录 -->
+	<div class="leftover-record">
+		<div>
+			<h3>损耗比记录</h3>
+			<label for="lr_start_time">起始时间<input type="date" id="lr_start_time" value=""></label>
+			<label for="lr_end_time">终止时间<input type="date" id="lr_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>损耗编号</th>
+						<th>开炉日期</th>
+						<th>产品型号</th>
+						<th>银</th>
+						<th>铜</th>
+						<th>锌</th>
+						<th>镉</th>
+						<th>锡</th>
+						<th>废料</th>
+						<th>原料消耗总量</th>
+						<th>胚料产出总量</th>
+						<th>开炉损耗比</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 产品产出记录 -->
+	<div class="product-produce-record">
+		<div>
+			<h3>产品产出记录</h3>
+			<label for="ppr_start_time">起始时间<input type="date" id="ppr_start_time" value=""></label>
+			<label for="ppr_end_time">终止时间<input type="date" id="ppr_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>加工编号</th>
+						<th>加工日期</th>
+						<th>产品型号</th>
+						<th>产品规格</th>
+						<th>产品形态</th>
+						<th>产出总量(kg)</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 出库记录 -->
+	<div class="factory-out-storage-record">
+		<div>
+			<h3>出库记录</h3>
+			<label for="fosr_start_time">起始时间<input type="date" id="fosr_start_time" value=""></label>
+			<label for="fosr_end_time">终止时间<input type="date" id="fosr_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>出库编号</th>
+						<th>出库日期</th>
+						<th>产品型号</th>
+						<th>产品规格</th>
+						<th>产品形态</th>
+						<th>出库总来(kg)</th>
+						<th>接收仓库</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 型号记录 -->
+	<div class="model-record">
+		<div>
+			<h3>型号记录</h3>
+			<label for="mr_start_time">起始时间<input type="date" id="mr_start_time" value=""></label>
+			<label for="mr_end_time">终止时间<input type="date" id="mr_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>产品型号</th>
+						<th>添加日期</th>
+						<th>银</th>
+						<th>铜</th>
+						<th>锌</th>
+						<th>镉</th>
+						<th>锡</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 其他清仓记录 -->
+	<div class="check-warehouse-others-record">
+		<div>
+			<h3>其他清仓记录</h3>
+			<label for="cwor_start_time">起始时间<input type="date" id="cwor_start_time" value=""></label>
+			<label for="cwor_end_time">终止时间<input type="date" id="cwor_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>添加日期</th>
+						<th>产品型号</th>
+						<th>胚料</th>
+						<th>半成品</th>
+						<th>废料</th>
+						<th>产品</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 产品清仓记录 -->
+	<div class="check-warehouse-product-record">
+		<div>
+			<h3>产品产出记录</h3>
+			<label for="cwpr_start_time">起始时间<input type="date" id="cwpr_start_time" value=""></label>
+			<label for="cwpr_end_time">终止时间<input type="date" id="cwpr_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>产品清仓编号</th>
+						<th>清仓日期</th>						
+						<th>产品型号</th>
+						<th>产品规格</th>
+						<th>产品形态</th>
+						<th>产品数量(kg)</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 原料采购统计 -->
+	<div class="material-purchase-statistics">
+		<div>
+			<h3>原料采购统计</h3>
+			<label for="mps_start_time">起始时间<input type="date" id="mps_start_time" value=""></label>
+			<label for="mps_end_time">终止时间<input type="date" id="mps_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>原料种类</th>
+						<th>采购量(kg)</th>
+						<th>总价(元)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>银</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+					<tr>
+						<td>铜</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+					<tr>
+						<td>锌</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+					<tr>
+						<td>镉</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+					<tr>
+						<td>锡</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 产品库存统计 -->
+	<div class="factory-product-statistics">
+		<div>
+			<h3>产品库存统计</h3>
+			<label for="fps_start_time">起始时间<input type="date" id="fps_start_time" value=""></label>
+			<label for="fps_end_time">终止时间<input type="date" id="fps_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>产品型号</th>
+						<th>产品规格</th>
+						<th>产品形态</th>
+						<th>产出总重量(kg)</th>
+						<th>出库总重量</th>
+						<th>剩余库存总重量(kg)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 仓库入库记录 -->
+	<div class="warehouse-in-storage-record">
+		<div>
+			<h3>仓库入库记录</h3>
+			<label for="wisr_start_time">起始时间<input type="date" id="wisr_start_time" value=""></label>
+			<label for="wisr_end_time">终止时间<input type="date" id="wisr_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>入库编号</th>
+						<th>入库日期</th>
+						<th>产品型号</th>
+						<th>产品规格</th>
+						<th>产品形态</th>
+						<th>成品重量(kg)</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 订单记录 -->
+	<div class="order-record">
+		<div>
+			<h3>订单记录</h3>
+			<label for="or_start_time">起始时间<input type="date" id="or_start_time" value=""></label>
+			<label for="or_end_time">终止时间<input type="date" id="or_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>订单编号</th>
+						<th>订单日期</th>
+						<th>产品型号</th>
+						<th>产品规格</th>
+						<th>产品形态</th>
+						<th>总量(kg)</th>
+						<th>需配送(kg)</th>
+						<th>单价(元/kg)</th>
+						<th>总价(元)</th>
+						<th>订单状态</th>
+						<th>送达日期</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 配送记录 -->
+	<div class="delivery-record">
+		<div>
+			<h3>配送记录</h3>
+			<label for="dr_start_time">起始时间<input type="date" id="dr_start_time" value=""></label>
+			<label for="dr_end_time">终止时间<input type="date" id="dr_end_time" value=""></label>	
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<div>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>订单编号</th>
+						<th>配送编号</th>
+						<th>配送日期</th>
+						<th>收货人</th>
+						<th>产品型号</th>
+						<th>产品规格</th>
+						<th>产品形态</th>
+						<th>配送数量</th>
+						<th>登记人</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+						<td>data</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 原料库存 -->
+	<div class="material-inventory">
+		<h3>原料库存</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>原料</th>
+					<th>银</th>
+					<th>铜</th>
+					<th>锌</th>
+					<th>镉</th>
+					<th>锡</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>库存(kg)</td>
+					<td>data</td>
+					<td>data</td>
+					<td>data</td>
+					<td>data</td>
+					<td>data</td>
+				</tr>
+			</tbody>
+			<button type="button" class="btn btn-primary">刷新</button>
+		</table>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 产品库存 -->
+	<div class="product-inventory">
+		<h3>原料库存</h3>
+		<div>
+			<label for="pi_product_model">产品型号
+				<select id="mi_product_model">
+					<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+				</select>
+			</label>
+			<label for="pi_product_size">产品规格
+				<select id="mi_product_size">
+					<option value="A1">3*4*1</option>
+					<option value="A2">6*6*2</option>
+					<option value="A3">5*6*1</option>
+				</select>
+			</label>
+			<label for="pi_product_shape">产品形态
+				<select id="mi_product_shape">
+					<option value="stragiht">直</option>
+					<option value="bend">弯</option>
+				</select>
+			</label>
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>产品型号</th>
+					<th>产品规格</th>
+					<th>产品形态</th>
+					<th>库存总量(kg)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>data</td>
+					<td>data</td>
+					<td>data</td>
+					<td>data</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 仓库库存 -->
+	<div class="warehouse-product-inventory">
+		<h3>仓库库存</h3>
+		<div>
+			<label for="wpi_product_model">产品型号
+				<select id="mi_product_model">
+					<option value="A">A</option>
+					<option value="B">B</option>
+					<option value="C">C</option>
+				</select>
+			</label>
+			<label for="mi_product_size">产品规格
+				<select id="mi_product_size">
+					<option value="A1">3*4*1</option>
+					<option value="A2">6*6*2</option>
+					<option value="A3">5*6*1</option>
+				</select>
+			</label>
+			<label for="mi_product_shape">产品形态
+				<select id="mi_product_shape">
+					<option value="allShape">所有状态</option>
+					<option value="stragiht">直</option>
+					<option value="bend">弯</option>
+				</select>
+			</label>
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>产品型号</th>
+					<th>产品规格</th>
+					<th>产品形态</th>
+					<th>库存总量(kg)</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>data</td>
+					<td>data</td>
+					<td>data</td>
+					<td>data</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<br/><br/><br/>
+
+	<!-- 客户信息 -->
+	<div class="customer">
+		<h3>客户信息</h3>
+		<div>
+			<label for="customer_name">收货人<input type="text" id="customer_name" value=""></label>
+			<button type="button" class="btn btn-primary">筛选</button>
+		</div>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>收货人</th>
+					<th>联系电话</th>
+					<th>联系地址</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>data</td>
+					<td>data</td>
+					<td>data</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

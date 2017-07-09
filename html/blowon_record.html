@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>开炉记录</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/lib/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- 开炉记录 -->
+    <div class="blowon-record">
+        <!-- 模态 -->
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <!-- 开炉记录模态 -->
+                <div class="blowon-record-modal row">
+                    <!-- 开炉登记的模态框 -->
+                    <div class="col-md-3">
+                        <!-- id已改 -->
+                        <button class="emit-modal-blowon">开炉登记</button>
+                    </div>
+                    <div id="modal-blowon" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">开炉登记</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                                    <label>开炉日期：</label>
+                                    <input type="date">
+                                    <!-- 增加一项记录的button按钮需要编写添加表格行的js模块，id自改,位置居右-->
+                                    <button type="button" id="btn-add-blowon" >增加一项纪录</button><br>
+                                    <!-- 自己定义table的类名和id名 -->
+                                    <table class="table-bordered">
+                                        <tr>
+                                            <th>型号</th>
+                                            <th>银</th>
+                                            <th>铜</th>
+                                            <th>锌</th>
+                                            <th>镉</th>
+                                            <th>锡</th>
+                                            <th>废料</th>
+                                            <th>原料消耗总量（kg）</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <!-- select 框这里需要自己定义name属性和id属性，获取option的value值 -->
+                                                <select name="blowon-product-model" id="blowon-product-model">
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                </select></td>
+                                            <!-- 以下的input框都设置border：none ,还有宽度的属性也要再改，贼丑-->
+                                            <td><input type="text" style="width: 50px;"></td>
+                                            <td><input type="text" style="width: 50px;"></td>
+                                            <td><input type="text" style="width: 50px;"></td>
+                                            <td><input type="text" style="width: 50px;"></td>
+                                            <td><input type="text" style="width: 50px;"></td>
+                                            <td><input type="text" style="width: 50px;"></td>
+                                            <td><input type="text" style="width: 150px;" placeholder="统计得出"></td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- button的data-target属性需要对应好模态框的id,可以设置点击事件，改变当前模态框的透明度-->
+                                    <button class="emit-modal-confirm" type="button">提交</button>
+                                    <button type="button" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 开炉登记的模态框结束 -->
+                    <!-- 胚料登记模态框 -->
+                    <div class="col-md-3">
+                        <!-- 触发模态框的按钮或链接 ，名字自改-->
+                        <button class="emit-modal-blank">胚料登记</button>
+                    </div>
+                    <div id="modal-blank" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">胚料登记</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- 这里要根据提取的数据修改label后的样式 -->
+                                    <label>开炉日期：</label>
+                                    <input type="date">
+                                    <!-- 增加一项记录的button按钮需要编写添加表格行的js模块，id自改,位置居右 -->
+                                    <button type="button" id="btn-add-blank" >增加一项纪录</button><br>
+                                    <!-- 自己定义table的类名和id名 -->
+                                    <table class="table-bordered">
+                                        <tr>
+                                            <th>型号</th>
+                                            <th>原料消耗总量（kg）</th>
+                                            <th>胚料产出总量（kg）</th>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <!-- select 框这里需要自己定义name属性和id属性，获取option的value值 -->
+                                                <select name="blank-product-model" id="blank-product-model">
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                </select></td>
+                                            <!-- 以下的input框都设置border：none ,还有宽度的属性也要再改，贼丑-->
+                                            <td><input type="text" style="width: 150px;"></td>
+                                            <td><input type="text" style="width: 150px;"></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="modal-footer">
+                                    <!-- button的data-target属性需要对应好模态框的id,可以设置点击事件，改变当前模态框的透明度-->
+                                    <button class="emit-modal-confirm" type="button">提交</button>
+                                    <button type="button" data-dismiss="modal">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 胚料登记模态框结束 -->
+                    <div class="col-md-3">
+                        <button id="bor-record-button" type="button">开炉查询</button>
+                    </div>
+                    <div class="col-md-3">
+                        <button id="lr-record-button" type="button">损耗比查询</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+        <!-- 开炉表格 -->
+        <div class="blowon-record-table" style="display: block;">
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>开炉查询</h3>
+                </div>
+                <div class="col-md-10">
+                    <label for="bor-start-time">起始时间 </label><input type="date" name="start-time" id="bor-start-time" value="">
+                    <label for="bor-end-time">终止时间 </label><input type="date" name="end-time" id="bor-end-time" value="">
+                    <button id="bor-select" type="button" class="btn btn-primary">筛选</button>
+                    <button id="bor-threeDays" type="button" class="btn btn-primary">近三天</button>
+                    <button id="bor-aWeek" type="button" class="btn btn-primary">近一周</button>
+                    <button id="bor-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                    <button id="bor-aMonth" ype="button" class="btn btn-primary">近一个月</button>  
+                </div>
+            </div>
+            <div class="table-content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th name="id" data-key="id">开炉id</th>
+                            <th name="blowonNum" data-key="blowonNum">开炉编号</th>
+                            <th name="blowonDate" data-key="blowonDate">开炉日期</th>
+                            <th name="productModel" data-key="productModelInfo.productModel">产品型号</th>
+                            <th name="consumeAg" data-key="consumeAg">银</th>
+                            <th name="consumeCu" data-key="consumeCu">铜</th>
+                            <th name="consumeZn" data-key="consumeZn">锌</th>
+                            <th name="consumeCd" data-key="consumeCd">镉</th>
+                            <th name="consumeSn" data-key="consumeSn">锡</th>
+                            <th name="materialConsume" data-key="materialConsume">原料消耗总量</th>
+                            <th name="wasteConsume" data-key="wasteConsume">废料</th>
+                            <th name="leftoverConsume" data-key="leftoverConsume">边角料</th>
+                            <th name="staffName" data-key="staffName">登记人</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 损耗比记录表格 -->
+        <div class="leftover-record-table" style="display: none;">
+            <div class="row">
+                <div class="col-md-2">
+                    <h3>损耗比查询</h3>
+                </div>
+                <div class="col-md-10">
+                    <label for="lr-start-time">起始时间 </label><input type="date" name="start-time" id="lr-start-time" value="">
+                    <label for="lr-end-time">终止时间 </label><input type="date" name="end-time" id="lr-end-time" value="">
+                    <button id="lr-select" type="button" class="btn btn-primary">筛选</button>
+                    <button id="lr-threeDays" type="button" class="btn btn-primary">近三天</button>
+                    <button id="lr-aWeek" type="button" class="btn btn-primary">近一周</button>
+                    <button id="lr-twoWeeks" type="button" class="btn btn-primary">近两周</button>
+                    <button id="lr-aMonth" ype="button" class="btn btn-primary">近一个月</button>   
+                </div>
+            </div>
+            <div class="table-content">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th name="blankId" data-key="blankId">损耗比id</th>
+                            <th name="consumeNum" data-key="consumeNum">损耗编号</th>
+                            <th name="blowonDate" data-key="blowonDate">开炉日期</th>
+                            <th name="productModel" data-key="productModelInfo.productModel">产品型号</th>
+                            <th name="consumeAg" data-key="consumeAg">银</th>
+                            <th name="consumeCu" data-key="consumeCu">铜</th>
+                            <th name="consumeZn" data-key="consumeZn">锌</th>
+                            <th name="consumeCd" data-key="consumeCd">镉</th>
+                            <th name="consumeSn" data-key="consumeSn">锡</th>
+                            <th name="materialConsume" data-key="materialConsume">原料消耗总量</th>
+                            <th name="wasteConsume" data-key="wasteConsume">废料</th>
+                            <th name="leftoverConsume" data-key="leftoverConsume">边角料</th>
+                            <th name="blankProduce" data-key="blankProduce">胚料产出总量</th>
+                            <th name="lossRatio" data-key="lossRatio">开炉损耗比</th>
+                            <th name="staffName" data-key="staffName">登记人</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+    </div>
+    <!-- 开炉记录结束 -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../static/js/lib/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../static/js/lib/bootstrap.min.js"></script>
+    <script src="../static/js/blowon_record_table.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../static/js/emit_modal.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

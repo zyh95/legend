@@ -1,0 +1,698 @@
+<!-- 需要在每个对应表格的table那里添加data-modal-id属性，属性值对应模态框的ID
+所有的th元素都要添加相应的data-key属性。
+td的data-type属性值不知道是否有影响?
+登记人的数据是否要考虑删除？毕竟后台通过session取得登录人的ID和name。
+如果出现参数错误，请先检查data-key的属性值是否拼写错误。
+每个修改的模态框都要在id所在的div上加上input-num类
+出错的时候还可以检查一下发送请求的服务器路径是否正确，即检查data-url属性值-->
+
+<!-- blowon_record_table修改开炉记录,staffId和staffName都要传回去给服务器！！ -->
+<div id="modal-blowon-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改工厂开炉记录</h4>
+            </div>
+            <div class="modal-body" data-url="BlowonRecord/updateBlowonRecord/">
+                <div>
+                    <label for="blowon-id-modify">开炉id:</label>
+                    <input class="required data-modify input-num" type="text" id="blowon-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="blowon-num-modify">开炉编号：</label>
+                    <input class="required data-modify" type="text" id="blowon-num-modify"
+                           data-key="blowonNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="blowon-date-modify">开炉日期：</label>
+                    <input class="required data-modify" type="text" id="blowon-date-modify" data-key="blowonDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="blowon-product-model-modify">产品型号：</label>
+                    <input class="required data-modify" id="blowon-product-model-modify"
+                            data-key="productModelInfo.productModel" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="blowon-consumeAg-modify">银：</label>
+                    <input class="required data-modify" type="text" id="blowon-consumeAg-modify"
+                           data-key="consumeAg" data-type="string">
+                </div>
+                <div>
+                    <label for="blowon-consumeCu-modify">铜：</label>
+                    <input class="required data-modify" type="text" id="blowon-consumeCu-modify"
+                           data-key="consumeCu" data-type="string">
+                </div>
+                <div>
+                    <label for="blowon-consumeZn-modify">锌：</label>
+                    <input class="required data-modify" type="text" id="blowon-consumeZn-modify"
+                           data-key="consumeZn" data-type="string">
+                </div>
+                <div>
+                    <label for="blowon-consumeCd-modify">镉：</label>
+                    <input class="required data-modify" type="text" id="blowon-consumeCd-modify"
+                           data-key="consumeCd" data-type="string">
+                </div>
+                <div>
+                    <label for="blowon-consumeSn-modify">锡：</label>
+                    <input class="required data-modify" type="text" id="blowon-consumeSn-modify"
+                           data-key="consumeSn" data-type="string">
+                </div>
+                <div>
+                    <label for="blowon-materialConsume-modify">原料消耗总量：</label>
+                    <input class="required data-modify" type="text" id="blowon-materialConsume-modify"
+                           data-key="materialConsume" data-type="string">
+                </div>
+                <div>
+                    <label for="blowon-wasteConsume-modify">废料：</label>
+                    <input class="required data-modify" type="text" id="blowon-wasteConsume-modify"
+                           data-key="wasteConsume" data-type="string">
+                </div>
+                <div>
+                    <label for="blowon-leftoverConsume-modify">边角料：</label>
+                    <input class="required data-modify" type="text" id="blowon-leftoverConsume-modify"
+                           data-key="leftoverConsume" data-type="string">
+                </div>
+                <div>
+                    <label for="blowon-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="blowon-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- blank_record_table修改胚料记录即损耗比记录，
+开炉记录表格那里的损耗比ID的data-key和name属性需要修改一下？
+这里可能还需要确认一下哪些是不能修改的，记得加上readonly属性-->
+<div id="modal-blank-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改工厂胚料记录</h4>
+            </div>
+            <div class="modal-body" data-url="BlowonRecord/updateBlankRecord/">
+                <div>
+                    <label for="blank-id-modify">损耗比id:</label>
+                    <input class="required data-modify input-num" type="text" id="blank-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="consume-num-modify">损耗编号：</label>
+                    <input class="required data-modify" type="text" id="consume-num-modify"
+                           data-key="consumeNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="blank-blowon-date-modify">开炉日期：</label>
+                    <input class="required data-modify" type="text" id="blank-blowon-date-modify" data-key="blowonDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="blank-product-model-modify">产品型号：</label>
+                    <input class="required data-modify" id="blank-product-model-modify"
+                            data-key="productModelInfo.productModel" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="blank-consumeAg-modify">银：</label>
+                    <input class="required data-modify" type="text" id="blank-consumeAg-modify"
+                           data-key="consumeAg" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-consumeCu-modify">铜：</label>
+                    <input class="required data-modify" type="text" id="blank-consumeCu-modify"
+                           data-key="consumeCu" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-consumeZn-modify">锌：</label>
+                    <input class="required data-modify" type="text" id="blank-consumeZn-modify"
+                           data-key="consumeZn" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-consumeCd-modify">镉：</label>
+                    <input class="required data-modify" type="text" id="blank-consumeCd-modify"
+                           data-key="consumeCd" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-consumeSn-modify">锡：</label>
+                    <input class="required data-modify" type="text" id="blank-consumeSn-modify"
+                           data-key="consumeSn" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-materialConsume-modify">原料消耗总量：</label>
+                    <input class="required data-modify" type="text" id="blank-materialConsume-modify"
+                           data-key="materialConsume" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-wasteConsume-modify">废料：</label>
+                    <input class="required data-modify" type="text" id="blank-wasteConsume-modify"
+                           data-key="wasteConsume" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-leftoverConsume-modify">边角料：</label>
+                    <input class="required data-modify" type="text" id="blank-leftoverConsume-modify"
+                           data-key="leftoverConsume" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-blank-produce-modify">胚料产出总量：</label>
+                    <input class="required data-modify" type="text" id="blank-blank-produce-modify"
+                           data-key="blankProduce" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-lossRatio-modify">开炉损耗比：</label>
+                    <input class="required data-modify" type="text" id="blank-lossRatio-modify"
+                           data-key="lossRatio" data-type="string">
+                </div>
+                <div>
+                    <label for="blank-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="blank-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- check_warehouse_record_table修改其他清仓记录，对应的data-url路径上传的是其他清仓的 -->
+<div id="modal-check-warehouse-others-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改工厂清仓记录</h4>
+            </div>
+            <div class="modal-body" data-url="CheckWarehouseOthersRecord/updateCheckWarehouseOthersRecord/">
+                <div>
+                    <label for="check-warehouse-others-id-modify">清仓id:</label>
+                    <input class="required data-modify input-num" type="text" id="check-warehouse-others-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="check-warehouse-others-num-modify">清仓编号：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-others-num-modify"
+                           data-key="checkNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="check-warehouse-others-date-modify">清仓日期：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-others-date-modify" data-key="checkDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="check-warehouse-others-product-model-modify">产品型号：</label>
+                    <select class="required data-modify" id="check-warehouse-others-product-model-modify"
+                            data-key="productModelInfo.productModel" data-type="string" readonly>
+                    </select>
+                </div>
+                <div>
+                    <label for="check-warehouse-others-materialConsume-modify">原料消耗总量：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-others-materialConsume-modify"
+                           data-key="materialConsume" data-type="string">
+                </div>
+                <div>
+                    <label for="check-warehouse-others-wasteConsume-modify">废料：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-others-wasteConsume-modify"
+                           data-key="wasteConsume" data-type="string">
+                </div>
+                <div>
+                    <label for="check-warehouse-others-leftoverConsume-modify">边角料：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-others-leftoverConsume-modify"
+                           data-key="leftoverConsume" data-type="string">
+                </div>
+                <div>
+                    <label for="check-warehouse-others-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-others-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- check_warehouse_record_table修改产品清仓记录 -->
+<div id="modal-check-warehouse-product-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改产品清仓记录</h4>
+            </div>
+            <div class="modal-body" data-url="CheckWarehouseOthersRecord/updateCheckWarehouseProductRecord/">
+                <div>
+                    <label for="check-warehouse-product-id-modify">产品清仓id:</label>
+                    <input class="required data-modify input-num" type="text" id="check-warehouse-product-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="check-warehouse-product-num-modify">产品清仓编号：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-product-num-modify"
+                           data-key="checkNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="check-warehouse-product-date-modify">产品清仓日期：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-product-date-modify" data-key="checkDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="check-warehouse-product-product-model-modify">产品型号：</label>
+                    <input class="required data-modify" id="check-warehouse-product-product-model-modify"
+                            data-key="product.productModelInfo.productModel" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="check-warehouse-product-product-size-modify">产品规格：</label>
+                    <input class="required data-modify" id="check-warehouse-product-product-size-modify"
+                            data-key="product.productSize" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="check-warehouse-product-product-shape-modify">产品形态：</label>
+                    <input class="required data-modify" id="check-warehouse-product-product-shape-modify"
+                            data-key="product.productShape" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="check-warehouse-product-inventory-modify">产品总量(kg)：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-product-inventory-modify"
+                           data-key="productInventory" data-type="string">
+                </div>
+                <div>
+                    <label for="check-warehouse-product-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="check-warehouse-product-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- factory_order_record_table修改订单记录 -->
+<div id="modal-order-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改订单记录</h4>
+            </div>
+            <div class="modal-body" data-url="WarehouseOrder/">
+                <div>
+                    <label for="order-id-modify">订单id:</label>
+                    <input class="required data-modify input-num" type="text" id="order-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="order-num-modify">订单编号：</label>
+                    <input class="required data-modify" type="text" id="order-num-modify"
+                           data-key="orderNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="order-date-modify">订单日期：</label>
+                    <input class="required data-modify" type="text" id="order-date-modify" data-key="orderDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="order-product-model-modify">产品型号：</label>
+                    <input class="required data-modify" id="order-product-model-modify"
+                            data-key="product.productModelInfo.productModel" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="order-product-size-modify">产品规格：</label>
+                    <input class="required data-modify" id="order-product-size-modify"
+                            data-key="product.productSize" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="order-product-shape-modify">产品形态：</label>
+                    <input class="required data-modify" id="order-product-shape-modify"
+                            data-key="product.productShape" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="order-deliveryQuantityTotal-modify">总量(kg)：</label>
+                    <input class="required data-modify" type="text" id="order-deliveryQuantityTotal-modify"
+                           data-key="deliveryQuantityTotal" data-type="string">
+                </div>
+                <div>
+                    <label for="order-deliveryQuantityNeed-modify">需配送(kg)：</label>
+                    <input class="required data-modify" type="text" id="order-deliveryQuantityNeed-modify"
+                           data-key="deliveryQuantityNeed" data-type="string">
+                </div>
+                <div>
+                    <label for="order-unitPrice-modify">单价(元/kg)：</label>
+                    <input class="required data-modify" type="text" id="order-unitPrice-modify"
+                           data-key="unitPrice" data-type="string">
+                </div>
+                <div>
+                    <label for="order-totalPrice-modify">总价(元/kg)：</label>
+                    <input class="required data-modify" type="text" id="order-totalPrice-modify"
+                           data-key="totalPrice" data-type="string">
+                </div>
+                <div>
+                    <label for="order-customerName-modify">收货人：</label>
+                    <input class="required data-modify" type="text" id="order-customerName-modify"
+                           data-key="customer.customerName" data-type="string">
+                </div>
+                <div>
+                    <label for="order-customerPhone-modify">联系电话：</label>
+                    <input class="required data-modify" type="text" id="order-customerPhone-modify"
+                           data-key="customer.customerPhone" data-type="string">
+                </div>
+                <div>
+                    <label for="order-customerAddress-modify">配送地址：</label>
+                    <input class="required data-modify" type="text" id="order-customerAddress-modify"
+                           data-key="customer.customerAddress" data-type="string">
+                </div>
+                <div>
+                    <label for="order-orderStatus-modify">订单状态：</label>
+                    <input class="required data-modify" type="text" id="order-orderStatus-modify"
+                           data-key="orderStatus" data-type="string">
+                </div>
+                <div>
+                    <label for="order-deliveryDate-modify">送达日期：</label>
+                    <input class="required data-modify" type="text" id="order-deliveryDate-modify"
+                           data-key="deliveryDate" data-type="string">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- factory_out_storage_record_table工厂出库记录， -->
+<div id="modal-factory-out-storage-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改工厂出库记录</h4>
+            </div>
+            <div class="modal-body" data-url="FactoryOutStorageRecord/updateFactoryOutStorageRecord/">
+                <div>
+                    <label for="factory-out-storage-id-modify">出库id:</label>
+                    <input class="required data-modify input-num" type="text" id="factory-out-storage-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="factory-out-storage-num-modify">出库编号：</label>
+                    <input class="required data-modify" type="text" id="factory-out-storage-num-modify"
+                           data-key="outStorageNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="factory-out-storage-date-modify">出库日期：</label>
+                    <input class="required data-modify" type="text" id="factory-out-storage-date-modify" data-key="outStorageDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="factory-out-storage-product-model-modify">产品型号：</label>
+                    <input class="required data-modify" id="factory-out-storage-product-model-modify"
+                            data-key="product.productModelInfo.productModel" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="factory-out-storage-product-size-modify">产品规格：</label>
+                    <input class="required data-modify" id="factory-out-storage-product-size-modify"
+                            data-key="product.productSize" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="factory-out-storage-product-shape-modify">产品形态：</label>
+                    <input class="required data-modify" id="factory-out-storage-product-shape-modify"
+                            data-key="product.productShape" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="factory-out-storage-quantity-modify">出库总量(kg)：</label>
+                    <input class="required data-modify" type="text" id="factory-out-storage-quantity-modify"
+                           data-key="outStorageQuantity" data-type="string">
+                </div>
+                <div>
+                    <label for="factory-out-storage-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="factory-out-storage-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- matarial_purchase_record_table原料采购记录 -->
+<div id="modal-material-purchase-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改原料采购记录</h4>
+            </div>
+            <div class="modal-body" data-url="materialPurchaseRecord/">
+                <div>
+                    <label for="material-purchase-id-modify">采购id:</label>
+                    <input class="required data-modify input-num" type="text" id="material-purchase-id-modify" data-key="material。materialId"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="material-purchase-num-modify">采购编号：</label>
+                    <input class="required data-modify" type="text" id="material-purchase-num-modify"
+                           data-key="purchaseNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="material-purchase-date-modify">采购日期：</label>
+                    <input class="required data-modify" type="text" id="material-purchase-date-modify" data-key="purchaseDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="material-purchase-class-modify">原料种类：</label>
+                    <input class="required data-modify" type="text" id="material-purchase-class-modify" data-key="material.materialClass"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="material-purchase-purchaseQuantity-modify">采购量(kg)：</label>
+                    <input class="required data-modify" type="text" id="material-purchase-purchaseQuantity-modify"
+                           data-key="purchaseQuantity" data-type="string">
+                </div>
+                <div>
+                    <label for="material-purchase-unitPrice-modify">单价(元/kg)：</label>
+                    <input class="required data-modify" type="text" id="material-purchase-unitPrice-modify"
+                           data-key="unitPrice" data-type="string">
+                </div>
+                <div>
+                    <label for="material-purchase-totalPrice-modify">总价(元/kg)：</label>
+                    <input class="required data-modify" type="text" id="material-purchase-totalPrice-modify"
+                           data-key="totalPrice" data-type="string">
+                </div>
+                <div>
+                    <label for="material-purchase-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="material-purchase-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- product_model_info_record_table修改产品型号信息，产品型号是不能修改的吧？ -->
+<div id="modal-product-model-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改产品型号记录</h4>
+            </div>
+            <div class="modal-body" data-url="ProductModelInfo/updateProductModelInfo/">
+                <div>
+                    <label for="product-model-id-modify">产品id:</label>
+                    <input class="required data-modify input-num" type="text" id="product-model-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="product-model-add-date-modify">添加日期：</label>
+                    <input class="required data-modify" type="text" id="product-model-add-date-modify" data-key="addDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="product-model-modify">产品型号：</label>
+                    <input class="required data-modify" id="product-model-modify"
+                            data-key="productModel" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="product-model-ratioAg-modify">银：</label>
+                    <input class="required data-modify" type="text" id="product-model-ratioAg-modify"
+                           data-key="ratioAg" data-type="string">
+                </div>
+                <div>
+                    <label for="product-model-ratioCu-modify">铜：</label>
+                    <input class="required data-modify" type="text" id="product-model-ratioCu-modify"
+                           data-key="ratioCu" data-type="string">
+                </div>
+                <div>
+                    <label for="product-model-ratioZn-modify">锌：</label>
+                    <input class="required data-modify" type="text" id="product-model-ratioZn-modify"
+                           data-key="ratioZn" data-type="string">
+                </div>
+                <div>
+                    <label for="product-model-ratioCd-modify">镉：</label>
+                    <input class="required data-modify" type="text" id="product-model-ratioCd-modify"
+                           data-key="ratioCd" data-type="string">
+                </div>
+                <div>
+                    <label for="product-model-ratioSn-modify">锡：</label>
+                    <input class="required data-modify" type="text" id="product-model-ratioSn-modify"
+                           data-key="ratioSn" data-type="string">
+                </div>
+                <div>
+                    <label for="product-model-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="product-model-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- product_produce_record_table修改产品产出记录 -->
+<div id="modal-product-produce-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改产品产出记录</h4>
+            </div>
+            <div class="modal-body" data-url="ProductProduce/updateProductProduce/">
+                <div>
+                    <label for="product-produce-id-modify">产出id:</label>
+                    <input class="required data-modify input-num" type="text" id="product-produce-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="product-produce-num-modify">加工编号：</label>
+                    <input class="required data-modify" type="text" id="product-produce-num-modify"
+                           data-key="produceNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="product-produce-date-modify">加工日期：</label>
+                    <input class="required data-modify" type="text" id="product-produce-date-modify" data-key="produceDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="product-produce-product-model-modify">产品型号：</label>
+                    <input class="required data-modify" id="product-produce-product-model-modify"
+                            data-key="product.productModelInfo.productModel" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="product-produce-product-size-modify">产品规格：</label>
+                    <input class="required data-modify" id="product-produce-product-size-modify"
+                            data-key="product.productSize" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="product-produce-product-shape-modify">产品形态：</label>
+                    <input class="required data-modify" id="product-produce-product-shape-modify"
+                            data-key="product.productShape" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="product-produce-quantity-modify">产出总量(kg)：</label>
+                    <input class="required data-modify" type="text" id="product-produce-quantity-modify"
+                           data-key="produceQuantity" data-type="string">
+                </div>
+                <div>
+                    <label for="product-produce-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="product-produce-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- warehouse_delivery_racord_table仓库配送记录，table对应的th缺少data-key属性-->
+<div id="modal-warehouse-delivery-modify" class="modal fade modal-modify" tabindex="-1" role="dialog" aria-hidden="true" data-show="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">修改仓库配送记录</h4>
+            </div>
+            <div class="modal-body" data-url="warehouseDeliveryRecord/">
+                <div>
+                    <label for="warehouse-delivery-id-modify">配送id:</label>
+                    <input class="required data-modify input-num" type="text" id="warehouse-delivery-id-modify" data-key="id"
+                           data-type="int" readonly>
+                </div>
+                <div>
+                    <label for="warehouse-order-num-modify">订单编号：</label>
+                    <input class="required data-modify" type="text" id="warehouse-order-num-modify"
+                           data-key="orderNum" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="warehouse-delivery-num-modify">配送编号：</label>
+                    <input class="required data-modify" type="text" id="warehouse-delivery-num-modify"
+                           data-key="deliveryNum" data-type="string" readonly>
+                </div>                
+                <div>
+                    <label for="warehouse-delivery-date-modify">配送日期：</label>
+                    <input class="required data-modify" type="text" id="warehouse-delivery-date-modify" data-key="deliveryDate"
+                           data-type="time" readonly>
+                </div>
+                <div>
+                    <label for="warehouse-delivery-product-model-modify">产品型号：</label>
+                    <input class="required data-modify" id="warehouse-delivery-product-model-modify"
+                            data-key="productModel" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="warehouse-delivery-product-size-modify">产品规格：</label>
+                    <input class="required data-modify" id="warehouse-delivery-product-size-modify"
+                            data-key="productSize" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="warehouse-delivery-product-shape-modify">产品形态：</label>
+                    <input class="required data-modify" id="warehouse-delivery-product-shape-modify"
+                            data-key="productShape" data-type="string" readonly>
+                </div>
+                <div>
+                    <label for="warehouse-deliveryQuantity-modify">配送数量(kg)：</label>
+                    <input class="required data-modify" type="text" id="warehouse-deliveryQuantity-modify"
+                           data-key="deliveryQuantity" data-type="string">
+                </div>
+                <div>
+                    <label for="warehouse-registrant-modify">登记人：</label>
+                    <input class="required data-modify" type="text" id="warehouse-registrant-modify"
+                           data-key="staffName" data-type="string" readonly>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-commit-in-modal">提交</button>
+                <button type="button" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- warehouse_product_inventory_statistics_table 这个不能修改吧，而且找不到对应的路径-->

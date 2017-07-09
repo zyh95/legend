@@ -1,0 +1,23 @@
+/*-- 隐藏下拉框空白选项 --*/
+
+.blank-option {
+    display: none;
+}
+
+
+/*-- 隐藏错误信息 --*/
+
+.hiddenMsg {
+    display: none;
+}
+
+
+/*-- 显示错误信息 --*/
+
+.errorMsg {
+    display: inline;
+    color: red;
+    font-size: 15px;
+    padding: 20px;
+    text-align: center;
+}
